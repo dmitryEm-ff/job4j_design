@@ -18,10 +18,10 @@ public class BackwardArrayIt implements Iterator<Integer> {
 
     @Override
     public Integer next() {
+        point++;
         if (!hasNext()) {
             throw new NoSuchElementException();
         }
-        point++;
         return data[data.length - point];
     }
 }
