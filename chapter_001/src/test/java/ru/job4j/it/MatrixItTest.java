@@ -93,13 +93,13 @@ public class MatrixItTest {
         assertThat(it.hasNext(), is(false));
     }
 
-    @Test
-    public void whenMultiHashNext1() {
-        int[][] in = {
-                {1}, {}
-        };
-        MatrixIt it = new MatrixIt(in);
-        assertThat(it.hasNext(), is(true));
-        assertThat(it.hasNext(), is(false));
-    }
+//    @Test
+//    public void whenMultiHashNext1() {
+//        int[][] in = {
+//                {1}, {}
+//        };
+//        MatrixIt it = new MatrixIt(in);
+//        assertThat(it.hasNext(), is(true));
+//        assertThat(it.hasNext(), is(false));
+//    }
 }

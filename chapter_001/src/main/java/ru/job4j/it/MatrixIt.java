@@ -26,15 +26,24 @@ public class MatrixIt implements Iterator<Integer> {
 //            column = 0;
 //        }
 //        return false;
+
+//        while (row < data.length && column == data[row].length) {
+//            row++;
+//            column = 0;
+//        }
+//
+//        if (row >= data.length) {
+//            return false;
+//        }
+//
+//        return data[row].length != 0;
+
         while (row < data.length && column == data[row].length) {
             row++;
             column = 0;
         }
-        if (row >= data.length) {
-            return false;
-        }
 
-        return data[row].length != 0;
+        return data.length > row && data[row].length > column;
     }
 
     @Override
