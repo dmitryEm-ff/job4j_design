@@ -6,10 +6,10 @@ import java.util.Objects;
 
 import org.apache.commons.lang.ArrayUtils;
 
-public class SimpleArray<T> implements Iterable<T> {
+public class SimpleArray<T> implements Iterable {
 
-    Object[] objects;
-    int index = 0;
+    private Object[] objects;
+    private int index = 0;
 
     public SimpleArray(int size) {
         this.objects = new Object[size];
@@ -31,13 +31,13 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public T get(int index) {
-        //todo
         Objects.checkIndex(index, this.index);
         return (T) this.objects[index];
     }
 
+
     @Override
-    public Iterator<T> iterator() {
+    public Iterator iterator() {
         return null;
     }
 }
