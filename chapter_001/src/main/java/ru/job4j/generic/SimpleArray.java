@@ -41,7 +41,7 @@ public class SimpleArray<T> implements Iterable<T> {
     public Iterator<T> iterator() {
         return new Iterator<T>() {
 
-            private int currentIndex = 0;
+            private int currentIndex = index;
 
             @Override
             public boolean hasNext() {
