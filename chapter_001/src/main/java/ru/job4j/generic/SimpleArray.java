@@ -2,11 +2,12 @@ package ru.job4j.generic;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 import org.apache.commons.lang.ArrayUtils;
 
-public class SimpleArray<T> implements Iterable {
+public class SimpleArray<T> implements Iterable<T> {
 
     private Object[] objects;
     private int index = 0;
@@ -37,7 +38,23 @@ public class SimpleArray<T> implements Iterable {
 
 
     @Override
-    public Iterator iterator() {
-        return null;
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+
+            private int currentIndex = 0;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex < index && objects[index] != null;
+            }
+
+            @Override
+            public T next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                return (T) objects[currentIndex++];
+            }
+        };
     }
 }
