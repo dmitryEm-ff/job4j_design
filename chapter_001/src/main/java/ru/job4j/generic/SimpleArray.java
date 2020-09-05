@@ -36,7 +36,6 @@ public class SimpleArray<T> implements Iterable<T> {
         return (T) this.objects[index];
     }
 
-
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
