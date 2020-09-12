@@ -10,18 +10,34 @@ public class SimpleList<E> implements Iterable<E> {
     private Node<E> first;
     private Node<E> last;
 
-    public E get(int index) {
-        Objects.checkIndex(index, elemCount);
-        return (E) container[index];
+    private static class Node<E> {
+        E item;
+        Node<E> next;
+        Node<E> prev;
+
+        Node(Node<E> prev, E element, Node<E> next) {
+            this.item = element;
+            this.next = next;
+            this.prev = prev;
+        }
     }
 
     public void add(E value) {
-        if (elemCount == container.length - 1) {
-            container = Arrays.copyOf(container, (container.length * 3) / 2 + 1);
+        final Node<E> l = last;
+        final Node<E> newNode = new Node<>(l, value, null);
+        last = newNode;
+        if (l == null) {
+            first = newNode;
+        } else {
+            l.next = newNode;
         }
-        container[elemCount] = value;
         modCount++;
         elemCount++;
+    }
+
+    public E get(int index) {
+        Objects.checkIndex(index, elemCount);
+        return (E) container[index];
     }
 
     @Override
