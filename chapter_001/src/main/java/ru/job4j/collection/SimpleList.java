@@ -6,7 +6,6 @@ public class SimpleList<E> implements Iterable<E> {
 
     private int modCount;
     private int elemCount;
-    private Object[] container = new Object[10];
     private Node<E> first;
     private Node<E> last;
 
@@ -37,7 +36,13 @@ public class SimpleList<E> implements Iterable<E> {
 
     public E get(int index) {
         Objects.checkIndex(index, elemCount);
-        return (E) container[index];
+        Node<E> nodeIndex = first;
+        int point = 0;
+        while (point != index) {
+            nodeIndex = nodeIndex.next;
+            point++;
+        }
+        return (E) nodeIndex.item;
     }
 
     @Override
@@ -45,7 +50,8 @@ public class SimpleList<E> implements Iterable<E> {
         return new Iterator<E>() {
 
             private int expectedModCount  = modCount;
-            int currentIndex = 0;
+            private int currentIndex = 0;
+            private Node<E> nodeIter = first;
 
             @Override
             public boolean hasNext() {
@@ -60,7 +66,9 @@ public class SimpleList<E> implements Iterable<E> {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                return (E) container[currentIndex++];
+                currentIndex++;
+                nodeIter = nodeIter.next;
+                return (E) nodeIter.item;
             }
         };
     }
