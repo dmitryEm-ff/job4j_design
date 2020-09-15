@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
 public class ForwardLinked<T> implements Iterable<T> {
-    private Node<T> head;
+    private Node<T> head = null;
     private T value;
 
     public void add(T value) {
@@ -54,7 +54,9 @@ public class ForwardLinked<T> implements Iterable<T> {
         if (head.next == null) {
             head.next = head;
             head = node;
+            return;
         }
+        head = node;
     }
 
     public T deleteFirstStack() {
