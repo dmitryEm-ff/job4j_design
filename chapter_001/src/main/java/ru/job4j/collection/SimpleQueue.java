@@ -5,9 +5,10 @@ public class SimpleQueue<T> {
     private final SimpleStack<T> out = new SimpleStack<>();
 
     public T poll() {
-        return null;
+        return in.pop();
     }
 
     public void push(T value) {
+        in.pushLast(value);
     }
 }
