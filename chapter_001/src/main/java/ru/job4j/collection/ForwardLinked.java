@@ -64,9 +64,6 @@ public class ForwardLinked<T> implements Iterable<T> {
         return value;
     }
 
-    public void revert() {
-        //TODO impl reverts of linked list.
-    }
 
     @Override
     public Iterator<T> iterator() {
