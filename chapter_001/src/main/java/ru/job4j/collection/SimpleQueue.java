@@ -8,13 +8,13 @@ public class SimpleQueue<T> {
     private final SimpleStack<T> out = new SimpleStack<>();
 
     public T poll() {
-        try {
-            out.popLast();
-        } catch (NoSuchElementException n) {
-            while (in.popLast() != ) {
-                out.pushLast(in.popLast());
-            }
-        }
+//        try {
+//            out.popLast();
+//        } catch (NoSuchElementException n) {
+//            while (in.popLast() != ) {
+//                out.pushLast(in.popLast());
+//            }
+//        }
         return out.popLast();
     }
 
