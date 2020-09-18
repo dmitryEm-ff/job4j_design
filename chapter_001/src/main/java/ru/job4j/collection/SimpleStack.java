@@ -16,16 +16,6 @@ public class SimpleStack<T> {
         size++;
     }
 
-    public T popLast() {
-        value = linked.deleteLast();
-        size--;
-        return value;
-    }
-
-    public void pushLast(T value) {
-        linked.add(value);
-        size++;
-    }
     public boolean isEmpty() {
         return size == 0;
     }
