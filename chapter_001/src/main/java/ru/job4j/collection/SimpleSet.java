@@ -11,7 +11,11 @@ public class SimpleSet<E> implements Iterable<E> {
     }
 
     public void add(E model) {
-        array.add(model);
+        for (E e : array) {
+            if (!Objects.equals(e, model)) {
+                array.add(model);
+            }
+        }
     }
 
     @Override
