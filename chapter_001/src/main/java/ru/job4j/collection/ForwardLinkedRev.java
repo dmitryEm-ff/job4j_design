@@ -24,13 +24,13 @@ public class ForwardLinkedRev<T> implements Iterable<T> {
         Node<T> current = head;
         Node<T> forward = head.next;
 
-        while (forward != null) {
+        while (current != null) {
+            forward = current.next;
             current.next = previous;
             previous = current;
             current = forward;
-            forward = forward.next;
-
         }
+        head = previous;
     }
 
     @Override
