@@ -26,8 +26,4 @@ public class SimpleSet<E> implements Iterable<E> {
     public Iterator<E> iterator() {
         return array.iterator();
     }
-
-    public int size() {
-        return array.size();
-    }
 }
