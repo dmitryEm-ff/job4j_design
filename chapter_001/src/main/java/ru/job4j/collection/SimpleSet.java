@@ -6,10 +6,6 @@ public class SimpleSet<E> implements Iterable<E> {
 
     private SimpleArray<E> array = new SimpleArray<>();
 
-    public E get(int index) {
-        return array.get(index);
-    }
-
     public void add(E model) {
         for (E e : array) {
             if (!Objects.equals(e, model)) {
