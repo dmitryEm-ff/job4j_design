@@ -19,7 +19,7 @@ public class SimpleSet<E> implements Iterable<E> {
                 rsl = true;
             }
         }
-        return false;
+        return rsl;
     }
 
     @Override
