@@ -17,6 +17,7 @@ public class SimpleSet<E> implements Iterable<E> {
         for (E e : array) {
             if (Objects.equals(e, model)) {
                 rsl = true;
+                break;
             }
         }
         return rsl;
