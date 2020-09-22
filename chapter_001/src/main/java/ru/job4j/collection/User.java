@@ -14,8 +14,8 @@ public class User {
     }
 
     public static void main(String[] args) {
-        User user1 = new User("Dima", 10, new GregorianCalendar(2020, 10, 20));
-        User user2 = new User("Dima", 10, new GregorianCalendar(2020, 10, 20));
+        User user1 = new User("Dima", 10, new GregorianCalendar(2020, Calendar.NOVEMBER, 20));
+        User user2 = new User("Dima", 10, new GregorianCalendar(2020, Calendar.NOVEMBER, 20));
         Map<User, Object> users = new HashMap<>();
         users.put(user1, 1);
         users.put(user2, 1);
