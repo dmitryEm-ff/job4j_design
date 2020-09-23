@@ -21,4 +21,9 @@ public class User {
         users.put(user2, 1);
         users.forEach((k, v) -> System.out.printf("Key: %s Value: %s \n", k, v));
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, children, birthday);
+    }
 }
