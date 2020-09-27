@@ -36,7 +36,6 @@ public class SimpleHashMap<K, V> implements Iterable {
     }
 
     public boolean insert(K key, V value) {
-        boolean flag = false;
         if (key == null) {
             return false;
         }
@@ -45,8 +44,16 @@ public class SimpleHashMap<K, V> implements Iterable {
         }
         int h = hash(key.hashCode());
         int index = indexFor(h, table.length);
-
-        return flag;
+        Entry<K, V> element = table[index];
+        if (element.hash == h && (element.key == key || key.equals(element.key))) {
+            table[index].value = value;
+            modCount++;
+            return false;
+        }
+        table[index] = new Entry<>(key, value, h);
+        modCount++;
+        size++;
+        return true;
     }
 
     public V get(K key) {
