@@ -10,6 +10,23 @@ public class SimpleHashMap<K, V> implements Iterable {
     private int threshold;
     private int size;
     private int modCount;
+    private int h;
+
+    public SimpleHashMap(Entry<K, V>[] table, int threshold, int size) {
+        this.table = new Entry[(int) capacity];
+        this.threshold = (int) (capacity * loadFactor);
+        this.size = 0;
+        this.modCount = 0;
+    }
+
+    public int size() {
+        return this.size;
+    }
+
+    static int hash(int h) {
+        h ^= (h >>> 20) ^ (h >>> 12);
+        return h ^ (h >>> 7) ^ (h >>> 4);
+    }
 
     public boolean insert(K key, V value) {
 
