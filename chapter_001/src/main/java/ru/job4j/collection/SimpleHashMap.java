@@ -1,5 +1,6 @@
 package ru.job4j.collection;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class SimpleHashMap<K, V> implements Iterable {
@@ -32,7 +33,16 @@ public class SimpleHashMap<K, V> implements Iterable {
     }
 
     private void resize() {
-
+        Entry<K, V>[] oldTable = table;
+        int newLength = oldTable.length * 2;
+        threshold = (int) (newLength * loadFactor);
+        Entry<K, V>[] newTable = new Entry[newLength];
+        for (int i = 0; i < oldTable.length; i++) {
+            if (oldTable[i] != null) {
+                newTable[oldTable[i].hash] = oldTable[i];
+            }
+        }
+        table = newTable;
     }
 
     public boolean insert(K key, V value) {
