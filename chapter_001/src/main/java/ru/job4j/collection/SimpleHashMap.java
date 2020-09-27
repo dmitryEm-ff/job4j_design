@@ -45,7 +45,7 @@ public class SimpleHashMap<K, V> implements Iterable {
         int h = hash(key.hashCode());
         int index = indexFor(h, table.length);
         Entry<K, V> element = table[index];
-        if (element.hash == h && (element.key == key || key.equals(element.key))) {
+        if (table[index] != null && element.hash == h && (element.key == key || key.equals(element.key))) {
             table[index].value = value;
             modCount++;
             return false;
