@@ -28,16 +28,20 @@ public class SimpleHashMap<K, V> implements Iterable {
         return h ^ (h >>> 7) ^ (h >>> 4);
     }
 
-    public boolean insert(K key, V value) {
+    static int indexFor(int h, int length) {
+        return h & (length - 1);
+    }
 
+    public boolean insert(K key, V value) {
+        return false;
     }
 
     public V get(K key) {
-
+        return null;
     }
 
     public boolean delete(K key) {
-
+        return false;
     }
 
     @Override
