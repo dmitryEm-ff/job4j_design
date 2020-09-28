@@ -2,7 +2,7 @@ package ru.job4j.collection;
 
 import java.util.*;
 
-public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Entry> {
+public class SimpleHashMap<K, V> implements Iterable {
 
     private Entry<K, V>[] table;
     private final float loadFactor = 0.75f;
@@ -37,8 +37,9 @@ public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Entry> {
         threshold = (int) (newLength * loadFactor);
         Entry<K, V>[] newTable = new Entry[newLength];
         for (int i = 0; i < oldTable.length; i++) {
-            if (oldTable[i] != null) {
-                newTable[oldTable[i].hash] = oldTable[i];
+            Entry<K, V> element = oldTable[i];
+            if (element != null) {
+                newTable[indexFor(element.hash, newLength)] = element;
             }
         }
         table = newTable;
