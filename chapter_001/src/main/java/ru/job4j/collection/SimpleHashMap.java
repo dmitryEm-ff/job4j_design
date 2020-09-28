@@ -1,9 +1,8 @@
 package ru.job4j.collection;
 
-import java.util.Arrays;
-import java.util.Iterator;
+import java.util.*;
 
-public class SimpleHashMap<K, V> implements Iterable {
+public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Entry> {
 
     private Entry<K, V>[] table;
     private final float loadFactor = 0.75f;
@@ -56,8 +55,6 @@ public class SimpleHashMap<K, V> implements Iterable {
         int index = indexFor(h, table.length);
         Entry<K, V> element = table[index];
         if (table[index] != null && element.hash == h && (element.key == key || key.equals(element.key))) {
-            table[index].value = value;
-            modCount++;
             return false;
         }
         table[index] = new Entry<>(key, value, h);
@@ -67,16 +64,50 @@ public class SimpleHashMap<K, V> implements Iterable {
     }
 
     public V get(K key) {
-        return null;
+        int index = indexFor(hash(key.hashCode()), table.length);
+        if (table[index] == null) {
+            return null;
+        }
+        return table[index].value;
     }
 
     public boolean delete(K key) {
-        return false;
+        if (key == null) {
+            return false;
+        }
+        int index = indexFor(hash(key.hashCode()), table.length);
+        if (table[index] == null) {
+            return false;
+        }
+        table[index] = null;
+        modCount++;
+        size--;
+        return true;
     }
 
     @Override
-    public Iterator iterator() {
-        return null;
+    public Iterator<Entry> iterator() {
+        return new Iterator<Entry>() {
+
+            private int expectedModCount  = modCount;
+            private int cursor;
+
+            @Override
+            public boolean hasNext() {
+                if (expectedModCount != modCount) {
+                    throw new ConcurrentModificationException();
+                }
+                return table[cursor] != null;
+            }
+
+            @Override
+            public Entry next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                return table[cursor++];
+            }
+        };
     }
 
     public static class Entry<K, V> {
