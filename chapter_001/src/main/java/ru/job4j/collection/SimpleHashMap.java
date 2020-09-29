@@ -55,13 +55,21 @@ public class SimpleHashMap<K, V> implements Iterable {
         int h = hash(key.hashCode());
         int index = indexFor(h, table.length);
         Entry<K, V> element = table[index];
-        if (table[index] != null && element.hash == h && (element.key == key || key.equals(element.key))) {
+        if (table[index] != null && element.key != key) {
             return false;
         }
         table[index] = new Entry<>(key, value, h);
         modCount++;
         size++;
         return true;
+//        if (table[index] != null && element.hash == h && (element.key == key || key.equals(element.key))) {
+//            table[index].value = value;
+//            return true;
+//        }
+//        table[index] = new Entry<>(key, value, h);
+//        modCount++;
+//        size++;
+//        return true;
     }
 
     public V get(K key) {
