@@ -62,7 +62,11 @@ public class SimpleHashMap<K, V> implements Iterable {
         modCount++;
         size++;
         return true;
-//        if (table[index] != null && element.hash == h && (element.key == key || key.equals(element.key))) {
+
+//        if (table[index] != null && element.key != key) {
+//            return false;
+//        }
+//        if (table[index] != null && element.hash == h && key.equals(element.key)) {
 //            table[index].value = value;
 //            return true;
 //        }
