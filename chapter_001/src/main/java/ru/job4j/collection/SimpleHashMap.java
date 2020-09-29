@@ -74,7 +74,7 @@ public class SimpleHashMap<K, V> implements Iterable {
 
     public V get(K key) {
         int index = indexFor(hash(key.hashCode()), table.length);
-        if (table[index] == null) {
+        if (table[index] == null || !key.equals(table[index].key)) {
             return null;
         }
         return table[index].value;
