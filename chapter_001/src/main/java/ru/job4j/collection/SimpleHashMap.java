@@ -85,7 +85,7 @@ public class SimpleHashMap<K, V> implements Iterable {
             return false;
         }
         int index = indexFor(hash(key.hashCode()), table.length);
-        if (table[index] == null) {
+        if (table[index] == null || !key.equals(table[index].key)) {
             return false;
         }
         table[index] = null;
