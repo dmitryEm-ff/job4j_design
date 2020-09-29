@@ -106,7 +106,13 @@ public class SimpleHashMap<K, V> implements Iterable {
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return table[cursor] != null;
+                for (int i = cursor; i < table.length; i++) {
+                    if (table[i] != null) {
+                        cursor = i;
+                        return true;
+                    }
+                }
+                return false;
             }
 
             @Override
