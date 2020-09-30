@@ -9,18 +9,22 @@ class Tree<E> implements SimpleTree<E> {
         this.root = new Node<>(root);
     }
 
+    public boolean isBinary() {
+
+        return false;
+    }
+
     @Override
     public boolean add(E parent, E child) {
-        boolean rsl = false;
         Optional<Node<E>> parentNode = findBy(parent);
         if (parentNode.isPresent()) {
             Node<E> element = parentNode.get();
             if (findBy(child).isEmpty()) {
                 element.children.add(new Node<>(child));
-                rsl = true;
+                return true;
             }
         }
-        return rsl;
+        return false;
     }
 
     @Override
