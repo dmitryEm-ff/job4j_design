@@ -55,7 +55,7 @@ public class SimpleHashMap<K, V> implements Iterable {
         int h = hash(key.hashCode());
         int index = indexFor(h, table.length);
         Entry<K, V> element = table[index];
-        if (table[index] != null && element.key != key) {
+        if (table[index] != null && key.equals(element.key)) {
             return false;
         }
         table[index] = new Entry<>(key, value, h);
