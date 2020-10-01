@@ -10,13 +10,13 @@ class Tree<E> implements SimpleTree<E> {
     }
 
     public boolean isBinary() {
-        boolean rsl = false;
+        boolean rsl = true;
         Queue<Node<E>> data = new LinkedList<>();
         data.offer(this.root);
         while (!data.isEmpty()) {
             Node<E> el = data.poll();
-            if (el.children.size() <= 2) {
-                rsl = true;
+            if (el.children.size() > 2) {
+                rsl = false;
                 break;
             }
             data.addAll(el.children);
