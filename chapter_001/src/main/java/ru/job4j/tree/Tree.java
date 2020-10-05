@@ -62,31 +62,31 @@ class Tree<E> implements SimpleTree<E> {
                 return eNode.value.equals(value);
             }
         };
-        return (Optional<Node<E>>) commonCheck(predicate);
+        return commonCheck(predicate);
     }
 
     public boolean isBinary() {
         Predicate<Node<E>> predicate = new Predicate<Node<E>>() {
             @Override
             public boolean test(Node<E> eNode) {
-                return eNode.children.size() > 3;
+                return eNode.children.size() < 3;
             }
         };
-        return (boolean) commonCheck(predicate);
+        return commonCheck(predicate).isPresent();
     }
 
-    public E commonCheck(Predicate<Node<E>> predicate) {
-        Optional<E> rsl = Optional.empty();
+    public Optional<Node<E>> commonCheck(Predicate<Node<E>> predicate) {
+        Optional<Node<E>> rsl = Optional.empty();
         Queue<Node<E>> data = new LinkedList<>();
         data.offer(this.root);
         while (!data.isEmpty()) {
             Node<E> el = data.poll();
             if (predicate.test(el)) {
-                rsl = (Optional<E>) Optional.of(el);
+                rsl = Optional.of(el);
                 break;
             }
             data.addAll(el.children);
         }
-        return (E) rsl;
+        return rsl;
     }
 }
