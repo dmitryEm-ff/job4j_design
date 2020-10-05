@@ -45,7 +45,7 @@ class Tree<E> implements SimpleTree<E> {
 //        data.offer(this.root);
 //        while (!data.isEmpty()) {
 //            Node<E> el = data.poll();
-//            if (el.children.size() > 3) {
+//            if (el.children.size() > 2) {
 //                rsl = false;
 //                break;
 //            }
@@ -69,7 +69,7 @@ class Tree<E> implements SimpleTree<E> {
         Predicate<Node<E>> predicate = new Predicate<Node<E>>() {
             @Override
             public boolean test(Node<E> eNode) {
-                return eNode.children.size() < 3;
+                return eNode.children.size() <= 2;
             }
         };
         return commonCheck(predicate).isPresent();
