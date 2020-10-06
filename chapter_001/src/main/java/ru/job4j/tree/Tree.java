@@ -69,10 +69,10 @@ class Tree<E> implements SimpleTree<E> {
         Predicate<Node<E>> predicate = new Predicate<Node<E>>() {
             @Override
             public boolean test(Node<E> eNode) {
-                return eNode.children.size() <= 2;
+                return eNode.children.size() > 2;
             }
         };
-        return commonCheck(predicate).isPresent();
+        return commonCheck(predicate).isEmpty();
     }
 
     public Optional<Node<E>> commonCheck(Predicate<Node<E>> predicate) {
