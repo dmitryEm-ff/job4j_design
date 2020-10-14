@@ -1,12 +1,14 @@
 package ru.job4j.statistic;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class Analize {
 
     public Info diff(List<User> previous, List<User> current) {
-        return null;
+        Info info = new Info();
+        return info;
     }
 
     public static class User {
@@ -54,6 +56,9 @@ public class Analize {
             this.added = added;
             this.changed = changed;
             this.deleted = deleted;
+        }
+
+        public Info() {
         }
 
         public int getAdded() {
