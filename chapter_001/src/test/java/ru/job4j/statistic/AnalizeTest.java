@@ -17,7 +17,7 @@ public class AnalizeTest {
         List<User> current = List.of(new User(1, "One"), new User(2, "Two"));
         Info info = new Analize().diff(previous, current);
         Info expected = new Info(1, 0, 0);
-        assertThat(expected, is(info));
+        assertThat(info, is(expected));
     }
 
     @Test
