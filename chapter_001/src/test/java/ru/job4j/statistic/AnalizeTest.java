@@ -21,15 +21,6 @@ public class AnalizeTest {
     }
 
     @Test
-    public void whenItemsChanged() {
-        List<User> previous = List.of(new User(1, "One"), new User(2, "Two"));
-        List<User> current = List.of(new User(1, "One"), new User(3, "Three"));
-        Info info = new Analize().diff(previous, current);
-        Info expected = new Info(1, 0, 1);
-        assertThat(expected, is(info));
-    }
-
-    @Test
     public void whenItemsRemoved() {
         List<User> previous = List.of(new User(1, "One"), new User(2, "Two"));
         List<User> current = List.of(new User(1, "One"));
@@ -48,7 +39,7 @@ public class AnalizeTest {
     }
 
     @Test
-    public void whenItemsChangedName() {
+    public void whenChangedItemsName() {
         List<User> previous = List.of(new User(1, "One"), new User(2, "Two"));
         List<User> current = List.of(new User(1, "One"), new User(2, "Three"));
         Info info = new Analize().diff(previous, current);

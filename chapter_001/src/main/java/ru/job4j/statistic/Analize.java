@@ -1,21 +1,37 @@
 package ru.job4j.statistic;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class Analize {
 
     public Info diff(List<User> previous, List<User> current) {
+//        Info info = new Info(0, 0, 0);
+//        for (User userPrev : previous) {
+//            for (User userCur : current) {
+//                if (userCur.id != userPrev.id) {
+//                    info.added++;
+//                    break;
+//                }
+//                if (userCur.name != userPrev.name) {
+//                    info.changed++;
+//                }
+//            }
+//        }
+//        info.deleted = (previous.size() + info.added) - current.size();
+//        return info;
         Info info = new Info(0, 0, 0);
-        for (User userPrev : previous) {
-            for (User userCur : current) {
-                if (userCur.id != userPrev.id) {
-                    info.added++;
-                    break;
-                }
-                if (userCur.name != userPrev.name) {
-                    info.changed++;
-                }
+        Map<Integer, User> mapPrev = new HashMap<>();
+        for (User user : previous) {
+            mapPrev.put(user.getId(), user);
+        }
+        for (User user : current) {
+            if (mapPrev.get(user.getId()) == null) {
+                info.added++;
+            } else if (!mapPrev.get(user.getId()).equals(user)) {
+                info.changed++;
             }
         }
         info.deleted = (previous.size() + info.added) - current.size();
