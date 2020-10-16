@@ -8,20 +8,6 @@ import java.util.Objects;
 public class Analize {
 
     public Info diff(List<User> previous, List<User> current) {
-//        Info info = new Info(0, 0, 0);
-//        for (User userPrev : previous) {
-//            for (User userCur : current) {
-//                if (userCur.id != userPrev.id) {
-//                    info.added++;
-//                    break;
-//                }
-//                if (userCur.name != userPrev.name) {
-//                    info.changed++;
-//                }
-//            }
-//        }
-//        info.deleted = (previous.size() + info.added) - current.size();
-//        return info;
         Info info = new Info(0, 0, 0);
         Map<Integer, User> mapPrev = new HashMap<>();
         for (User user : previous) {
