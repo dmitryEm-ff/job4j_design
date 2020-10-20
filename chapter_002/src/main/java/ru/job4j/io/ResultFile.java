@@ -12,7 +12,7 @@ public class ResultFile {
                     out.write(s.getBytes());
                 }
                 System.out.println();
-                out.write("\n".getBytes());
+                out.write(System.lineSeparator().getBytes());
             }
         } catch (Exception e) {
             e.printStackTrace();
