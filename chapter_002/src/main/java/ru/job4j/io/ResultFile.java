@@ -11,7 +11,6 @@ public class ResultFile {
                     System.out.println(s);
                     out.write(s.getBytes());
                 }
-                System.out.println();
                 out.write(System.lineSeparator().getBytes());
             }
         } catch (Exception e) {
