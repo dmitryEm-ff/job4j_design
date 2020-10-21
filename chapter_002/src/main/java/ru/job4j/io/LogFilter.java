@@ -24,10 +24,7 @@ public class LogFilter {
                 new BufferedOutputStream(
                         new FileOutputStream(file)
                 ))) {
-            for (String s : log) {
-                out.write(s);
-                out.write(System.lineSeparator());
-            }
+            log.forEach(f -> out.write(f + System.lineSeparator()));
         } catch (Exception e) {
             e.printStackTrace();
         }
