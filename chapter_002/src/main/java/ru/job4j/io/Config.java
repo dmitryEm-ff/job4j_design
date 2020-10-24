@@ -19,14 +19,16 @@ public class Config {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             read.lines()
                     .filter(s -> !s.contains("//") || !s.contains("/*") || !s.isEmpty())
-                    .collect(Collectors.toMap(e -> e, e -> e));
+                    .map(line -> line.split("="))
+                    .forEach(k -> values.put(k[0], k[1]));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public String value(String key) {
-        throw new UnsupportedOperationException("Don't impl this method yet!");
+        return values.get(key);
+//        throw new UnsupportedOperationException("Don't impl this method yet!");
     }
 
     @Override
