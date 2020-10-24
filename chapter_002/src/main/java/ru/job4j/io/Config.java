@@ -20,7 +20,7 @@ public class Config {
             read.lines()
                     .filter(s -> !s.contains("//") || !s.contains("/*") || !s.isEmpty())
                     .map(line -> line.split("="))
-                    .forEach(k -> values.put(k[0], k[1]));
+                    .forEach(key -> values.put(key[0], key[1]));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -28,7 +28,6 @@ public class Config {
 
     public String value(String key) {
         return values.get(key);
-//        throw new UnsupportedOperationException("Don't impl this method yet!");
     }
 
     @Override
