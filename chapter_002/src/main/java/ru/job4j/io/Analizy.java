@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 
 public class Analizy {
     public void unavailable(String source, String target) {
-
     }
 
     public static void main(String[] args) {
