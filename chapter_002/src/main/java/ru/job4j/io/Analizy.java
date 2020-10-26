@@ -34,12 +34,12 @@ public class Analizy {
         try (PrintWriter writer = new PrintWriter(
                 new BufferedOutputStream(
                         new FileOutputStream("server.log")))) {
-            writer.write("200 10:56:01\n"
-                    + "\n" + "200 10:57:01\n"
-                    + "\n" + "400 10:58:01\n"
-                    + "\n" + "200 10:59:01\n"
-                    + "\n" + "500 11:01:02\n"
-                    + "\n" + "200 11:02:02\n");
+            writer.write("200 10:56:01" + System.lineSeparator()
+                    + System.lineSeparator() + "200 10:57:01" + System.lineSeparator()
+                    + System.lineSeparator() + "400 10:58:01" + System.lineSeparator()
+                    + System.lineSeparator() + "200 10:59:01" + System.lineSeparator()
+                    + System.lineSeparator() + "500 11:01:02" + System.lineSeparator()
+                    + System.lineSeparator() + "200 11:02:02" + System.lineSeparator());
         } catch (Exception e) {
             e.printStackTrace();
         }
