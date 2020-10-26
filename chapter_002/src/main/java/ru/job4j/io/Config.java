@@ -18,7 +18,7 @@ public class Config {
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             read.lines()
-                    .filter(s -> !s.contains("//") || !s.contains("/*") || !s.isEmpty())
+                    .filter(s -> !s.contains("#") || !s.isEmpty())
                     .map(line -> line.split("="))
                     .forEach(key -> values.put(key[0], key[1]));
         } catch (Exception e) {
