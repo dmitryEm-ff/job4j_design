@@ -12,8 +12,7 @@ public class Analizy {
                 if (line.contains("400") || line.contains("500")) {
                     point = "error";
                     writer.write(line.split(" ")[1] + ";");
-                }
-                if (point != null && !line.isEmpty() && (!line.contains("400") || !line.contains("500"))) {
+                } else if (point != null && !line.isEmpty() && (!line.contains("400") || !line.contains("500"))) {
                     writer.write(line.split(" ")[1] + System.lineSeparator());
                     point = null;
                 }
