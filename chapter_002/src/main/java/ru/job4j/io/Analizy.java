@@ -4,8 +4,8 @@ import java.io.*;
 
 public class Analizy {
     public void unavailable(String source, String target) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(source))) {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(target));
+        try (BufferedReader reader = new BufferedReader(new FileReader(source));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(target))) {
             String point = null;
             while (reader.ready()) {
                 String line = reader.readLine();
@@ -23,26 +23,11 @@ public class Analizy {
     }
 
     public static void main(String[] args) {
-//        try (PrintWriter out = new PrintWriter(new FileOutputStream("unavailable.csv"))) {
-//            out.println("15:01:30;15:02:32");
-//            out.println("15:10:30;23:12:32");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-
-        Analizy analizy = new Analizy();
-        try (PrintWriter writer = new PrintWriter(
-                new BufferedOutputStream(
-                        new FileOutputStream("server.log")))) {
-            writer.write("200 10:56:01" + System.lineSeparator()
-                    + System.lineSeparator() + "200 10:57:01" + System.lineSeparator()
-                    + System.lineSeparator() + "400 10:58:01" + System.lineSeparator()
-                    + System.lineSeparator() + "200 10:59:01" + System.lineSeparator()
-                    + System.lineSeparator() + "500 11:01:02" + System.lineSeparator()
-                    + System.lineSeparator() + "200 11:02:02" + System.lineSeparator());
+        try (PrintWriter out = new PrintWriter(new FileOutputStream("unavailable.csv"))) {
+            out.println("15:01:30;15:02:32");
+            out.println("15:10:30;23:12:32");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        analizy.unavailable("server.log", "unavailable.log");
     }
 }
