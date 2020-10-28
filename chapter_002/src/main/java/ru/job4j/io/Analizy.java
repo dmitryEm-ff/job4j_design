@@ -9,10 +9,10 @@ public class Analizy {
             String point = null;
             while (reader.ready()) {
                 String line = reader.readLine();
-                if (line.contains("400") || line.contains("500")) {
+                if ((line.contains("400") || line.contains("500")) && point == null) {
                     point = "error";
                     writer.write(line.split(" ")[1] + ";");
-                } else if (point != null && !line.isEmpty() && (!line.contains("400") || !line.contains("500"))) {
+                } else if (point != null && !line.isEmpty() && !line.contains("400") && !line.contains("500")) {
                     writer.write(line.split(" ")[1] + System.lineSeparator());
                     point = null;
                 }
