@@ -12,8 +12,8 @@ public class Search {
         search(start, "js").forEach(System.out::println);
     }
 
-    public static List<Path> search(Path root, String ext) {
-        SearchFiles seacher = new SearchFiles(p -> p.getName.endsWith(ext));
+    public static List<Path> search(Path root, String ext) throws IOException {
+        SearchFiles searcher = new SearchFiles(p -> p.toFile().getName.endsWith(ext));
         Files.walkFileTree(root, searcher);
         return searcher.getPaths();
     }
