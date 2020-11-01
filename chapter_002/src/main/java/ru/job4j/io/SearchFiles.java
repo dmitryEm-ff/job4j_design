@@ -5,14 +5,21 @@ import java.nio.file.FileVisitResult;
 import java.nio.file.FileVisitor;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 import static java.nio.file.FileVisitResult.CONTINUE;
 
 public class SearchFiles implements FileVisitor<Path> {
-    private final Predicate predicate;
+    private final Predicate<Path> predicate;
+    private final List<Path> list = new ArrayList<>();
 
-    public SearchFiles(Predicate predicate) {
+    public List<Path> getPaths() {
+        return this.list;
+    }
+
+    public SearchFiles(Predicate<Path> predicate) {
         this.predicate = predicate;
     }
 
@@ -24,7 +31,7 @@ public class SearchFiles implements FileVisitor<Path> {
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         if (predicate.test(file)) {
-            return FileVisitResult.valueOf(file.toString());
+            list.add(file);
         }
         return CONTINUE;
     }
