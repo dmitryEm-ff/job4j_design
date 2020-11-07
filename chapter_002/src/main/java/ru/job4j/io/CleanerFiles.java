@@ -9,10 +9,11 @@ import java.util.*;
 
 public class CleanerFiles implements FileVisitor<Path> {
 
-    private final Map<Path, List<Path>> map = new HashMap<>();
+    private Set<FileProperty> set;
+    private List<Path> dublicates;
 
-    public Map<Path, List<Path>> getPaths() {
-        return map;
+    public List<Path> getDublicates() {
+        return dublicates;
     }
 
     @Override
@@ -22,11 +23,11 @@ public class CleanerFiles implements FileVisitor<Path> {
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-//        String fileName = file.getFileName().toString();
-        if (!map.containsKey(file)) {
-            map.put(file, new ArrayList<Path>());
+        FileProperty fileProperty = new FileProperty(file.toFile().getName(), file.toFile().length());
+        if (!set.contains(fileProperty)) {
+            set.add(fileProperty);
         } else {
-            map.get(file).add(file);
+            dublicates.add(file);
         }
         return FileVisitResult.CONTINUE;
     }

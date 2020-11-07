@@ -9,9 +9,14 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 public class Cleaner {
-    public static Map<Path, List<Path>> search(Path root) throws IOException {
+    public static List<Path> search(Path root) throws IOException {
         CleanerFiles cleanerFiles = new CleanerFiles();
         Files.walkFileTree(root, cleanerFiles);
-        return cleanerFiles.getPaths();
+        return cleanerFiles.getDublicates();
+    }
+
+    public static void main(String[] args) throws IOException {
+        Path start = Paths.get(".");
+        search(start).forEach(System.out::println);
     }
 }
