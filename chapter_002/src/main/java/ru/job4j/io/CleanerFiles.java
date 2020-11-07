@@ -9,8 +9,8 @@ import java.util.*;
 
 public class CleanerFiles implements FileVisitor<Path> {
 
-    private Set<FileProperty> set;
-    private List<Path> dublicates;
+    private final Set<FileProperty> set = new HashSet<>();
+    private final List<Path> dublicates = new ArrayList<>();
 
     public List<Path> getDublicates() {
         return dublicates;

@@ -16,7 +16,7 @@ public class Cleaner {
     }
 
     public static void main(String[] args) throws IOException {
-        Path start = Paths.get(".");
+        Path start = Paths.get("C:/projects/job4j_design/chapter_002");
         search(start).forEach(System.out::println);
     }
 }
