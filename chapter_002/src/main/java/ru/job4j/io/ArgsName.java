@@ -11,14 +11,22 @@ public class ArgsName {
     private final Map<String, String> values = new HashMap<>();
 
     public String get(String key) {
+        if (!values.containsKey(key)) {
+            throw new IllegalArgumentException("Key : (" + key + ") does not exist");
+        }
         return values.get(key);
     }
 
     private void parse(String[] args) {
-        Arrays.stream(args)
-                .map(ar -> ar.replace("-", ""))
-                .map(ar -> ar.split("="))
-                .forEach(key -> values.put(key[0], key[1]));
+//        Arrays.stream(args)
+//                .map(ar -> ar.replace("-", ""))
+//                .map(ar -> ar.split("="))
+//                .forEach(key -> values.put(key[0], key[1]));
+        for (String s : args) {
+            String[] words = s.split("=");
+            words[0] = words[0].replace("-", "");
+            values.put(words[0], words[1]);
+        }
     }
 
     public static ArgsName of(String[] args) {
