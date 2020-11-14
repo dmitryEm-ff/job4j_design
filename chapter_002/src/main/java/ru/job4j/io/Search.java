@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Search {
     public static void main(String[] args) throws IOException {
-        if (args.length == 0) {
+        if (args.length < 2) {
             throw new IllegalArgumentException("Directory or type is not entered.");
         }
         search(Paths.get(args[0]), args[1]).forEach(System.out::println);
