@@ -30,9 +30,6 @@ public class Zip {
     }
 
     public static void main(String[] args) {
-        new Zip().packSingleFile(
-                new File("./chapter_005/pom.xml"),
-                new File("./chapter_005/pom.zip")
-        );
+        new Zip().packSingleFile(new File("./chapter_005/pom.xml"), new File("./chapter_005/pom.zip"));
     }
 }
