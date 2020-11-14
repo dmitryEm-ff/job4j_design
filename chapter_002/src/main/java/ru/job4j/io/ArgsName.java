@@ -18,10 +18,6 @@ public class ArgsName {
     }
 
     private void parse(String[] args) {
-//        Arrays.stream(args)
-//                .map(ar -> ar.replace("-", ""))
-//                .map(ar -> ar.split("="))
-//                .forEach(key -> values.put(key[0], key[1]));
         for (String s : args) {
             String[] words = s.split("=");
             words[0] = words[0].replace("-", "");
