@@ -26,14 +26,14 @@ public class ArgZip {
     }
 
     public String directory() {
-        return splittedArgs.get("-d");
+        return splittedArgs.get("d");
     }
 
     public String exclude() {
-        return splittedArgs.get("-e");
+        return splittedArgs.get("e");
     }
 
     public String output() {
-        return splittedArgs.get("-o");
+        return splittedArgs.get("o");
     }
 }
