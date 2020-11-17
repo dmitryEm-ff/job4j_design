@@ -1,7 +1,10 @@
 package ru.job4j.io;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -31,10 +34,15 @@ public class Zip {
         }
     }
 
-    public static void main(String[] args) {
-        new Zip().packSingleFile(
-                new File("./chapter_005/pom.xml"),
-                new File("./chapter_005/pom.zip")
-        );
+    public static void main(String[] args) throws IOException {
+        ArgZip argZip = new ArgZip(args);
+        if (argZip.valid()) {
+            Zip zip = new Zip();
+            List<Path> files = Search.searchForZip(argZip);
+            List<File> result = files.stream().map(Path::toFile).collect(Collectors.toList());
+            zip.packFiles(result, new File(argZip.output()));
+        } else {
+            System.out.println("Arguments isn't valid!");
+        }
     }
 }

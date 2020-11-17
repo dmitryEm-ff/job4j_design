@@ -5,6 +5,14 @@ public class ArgZip {
     private final String[] args;
     private ArgsName splittedArgs;
 
+    public String[] getArgs() {
+        return args;
+    }
+
+    public ArgsName getSplittedArgs() {
+        return splittedArgs;
+    }
+
     public ArgZip(String[] args) {
         this.args = args;
     }
