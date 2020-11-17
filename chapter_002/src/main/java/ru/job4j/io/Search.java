@@ -20,4 +20,9 @@ public class Search {
         return searcher.getPaths();
     }
 
+    public static List<Path> searchForZip(ArgZip argZip, String ext) throws IOException {
+        SearchFiles searcher = new SearchFiles(p -> p.toFile().getName().endsWith(argZip.exclude()));
+        Files.walkFileTree(Paths.get(argZip.directory()), searcher);
+        return searcher.getPaths();
+    }
 }
