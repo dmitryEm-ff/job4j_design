@@ -1,17 +1,13 @@
 package ru.job4j.io;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 public class ArgZip {
 
     private final String[] args;
     private ArgsName splittedArgs;
-
-    public String[] getArgs() {
-        return args;
-    }
-
-    public ArgsName getSplittedArgs() {
-        return splittedArgs;
-    }
 
     public ArgZip(String[] args) {
         this.args = args;
@@ -22,6 +18,13 @@ public class ArgZip {
             throw new IllegalArgumentException("Not enough arguments!");
         }
         splittedArgs = ArgsName.of(args);
+
+        if (!Files.exists(Paths.get(directory()))) {
+            throw new IllegalArgumentException("This directory doesnt exist!");
+        }
+        if (!Files.isDirectory(Paths.get(directory()))) {
+            throw new IllegalArgumentException("Invalid catalog!");
+        }
         return true;
     }
 
