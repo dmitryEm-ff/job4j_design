@@ -16,6 +16,8 @@ public class ConsoleChat {
 
     }
 
+
+
     public static void main(String[] args) {
         ConsoleChat cc = new ConsoleChat("", "");
         cc.run();
