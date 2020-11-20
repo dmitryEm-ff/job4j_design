@@ -34,8 +34,8 @@ public class ConsoleChat {
 
     public static void main(String[] args) throws IOException {
         ConsoleChat cc = new ConsoleChat(
-                "C:\\projects\\job4j_design\\chapter_002\\src\\main\\resources\\botLog.txt",
-                "C:\\projects\\job4j_design\\chapter_002\\src\\main\\resources\\logic.txt"
+                "./chapter_002/data/botLog.txt",
+                "./chapter_002/data/logic.txt"
         );
 //        cc.run();
         System.out.println(cc.randomAnswer());
