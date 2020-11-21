@@ -2,7 +2,11 @@ package ru.job4j.io;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class ConsoleChat {
     private final String path;
@@ -17,12 +21,18 @@ public class ConsoleChat {
     }
 
     public void run() {
+        boolean flag = true;
+        List<String> strings = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
 
+        while (!OUT.equals(scanner.nextLine())) {
+            
+        }
     }
 
     public String randomAnswer() throws IOException {
         RandomAccessFile f = new RandomAccessFile(botAnswers, "r");
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path, Charset.forName("WINDOWS-1251")))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path, StandardCharsets.UTF_8))) {
             final long randomLocation = (long) (Math.random() * f.length());
             f.seek(randomLocation);
             f.readLine();
