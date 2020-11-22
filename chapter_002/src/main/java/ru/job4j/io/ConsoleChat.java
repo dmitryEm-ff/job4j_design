@@ -22,11 +22,27 @@ public class ConsoleChat {
 
     public void run() {
         boolean flag = true;
-        List<String> strings = new ArrayList<>();
+        String userQuestion = "";
+        String botAnswer;
         Scanner scanner = new Scanner(System.in);
-
-        while (!OUT.equals(scanner.nextLine())) {
-            
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path))) {
+            while (!OUT.equals(userQuestion)) {
+                userQuestion = scanner.nextLine();
+                bufferedWriter.write(userQuestion + System.lineSeparator());
+                if (STOP.equals(userQuestion)) {
+                    flag = false;
+                }
+                if (CONTINUE.equals(userQuestion)) {
+                    flag = true;
+                }
+                if (flag) {
+                    botAnswer = randomAnswer();
+                    System.out.println(botAnswer);
+                    bufferedWriter.write(botAnswer + System.lineSeparator());
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -47,7 +63,7 @@ public class ConsoleChat {
                 "./chapter_002/data/botLog.txt",
                 "./chapter_002/data/logic.txt"
         );
-//        cc.run();
-        System.out.println(cc.randomAnswer());
+        cc.run();
+//        System.out.println(cc.randomAnswer());
     }
 }
