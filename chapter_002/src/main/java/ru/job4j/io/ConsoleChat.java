@@ -25,7 +25,7 @@ public class ConsoleChat {
         String userQuestion = "";
         String botAnswer;
         Scanner scanner = new Scanner(System.in);
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path))) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, StandardCharsets.UTF_8))) {
             while (!OUT.equals(userQuestion)) {
                 userQuestion = scanner.nextLine();
                 bufferedWriter.write(userQuestion + System.lineSeparator());
@@ -48,13 +48,8 @@ public class ConsoleChat {
 
     public String randomAnswer() throws IOException {
         RandomAccessFile f = new RandomAccessFile(botAnswers, "r");
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path, StandardCharsets.UTF_8))) {
-            final long randomLocation = (long) (Math.random() * f.length());
-            f.seek(randomLocation);
-            f.readLine();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        final long randomLocation = (long) (Math.random() * f.length());
+        f.seek(randomLocation);
         return f.readLine();
     }
 
