@@ -27,8 +27,9 @@ public class ConsoleChat {
         Scanner scanner = new Scanner(System.in);
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, StandardCharsets.UTF_8))) {
             while (!OUT.equals(userQuestion)) {
+                System.out.print(System.lineSeparator() + "User : ");
                 userQuestion = scanner.nextLine();
-                bufferedWriter.write(userQuestion + System.lineSeparator());
+                bufferedWriter.write("User : " + userQuestion + System.lineSeparator());
                 if (STOP.equals(userQuestion)) {
                     flag = false;
                 }
@@ -37,8 +38,9 @@ public class ConsoleChat {
                 }
                 if (flag) {
                     botAnswer = randomAnswer();
-                    System.out.println(botAnswer);
-                    bufferedWriter.write(botAnswer + System.lineSeparator());
+                    System.out.print("Bot : " + botAnswer);
+                    bufferedWriter.write("Bot : " + botAnswer + System.lineSeparator());
+//                    bufferedWriter.write();
                 }
             }
         } catch (Exception e) {
