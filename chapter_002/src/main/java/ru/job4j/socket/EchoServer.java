@@ -20,7 +20,7 @@ public class EchoServer {
                     while (!(str = in.readLine()).isEmpty()) {
                         if (str.contains("Bye")) {
                             System.out.println(str);
-                            out.write("- OK\r\n\\".getBytes());
+                            out.write("HTTP/1.1 200 OK\r\n\\".getBytes());
                             flag = false;
                             break;
                         }
