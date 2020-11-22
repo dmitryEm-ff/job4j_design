@@ -25,7 +25,7 @@ public class ConsoleChat {
         String userQuestion = "";
         String botAnswer;
         Scanner scanner = new Scanner(System.in);
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, StandardCharsets.UTF_8))) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, StandardCharsets.UTF_8, true))) {
             while (!OUT.equals(userQuestion)) {
                 System.out.print(System.lineSeparator() + "User : ");
                 userQuestion = scanner.nextLine();
@@ -40,7 +40,6 @@ public class ConsoleChat {
                     botAnswer = randomAnswer();
                     System.out.print("Bot : " + botAnswer);
                     bufferedWriter.write("Bot : " + botAnswer + System.lineSeparator());
-//                    bufferedWriter.write();
                 }
             }
         } catch (Exception e) {
@@ -60,7 +59,5 @@ public class ConsoleChat {
                 "./chapter_002/data/botLog.txt",
                 "./chapter_002/data/logic.txt"
         );
-        cc.run();
-//        System.out.println(cc.randomAnswer());
     }
 }
