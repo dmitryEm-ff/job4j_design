@@ -3,6 +3,9 @@ package ru.job4j.io;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -20,38 +23,30 @@ public class ConsoleChat {
         this.botAnswers = botAnswers;
     }
 
-    public void run() {
+    public void run() throws IOException {
         boolean flag = true;
         String userQuestion = "";
-        String botAnswer;
         Scanner scanner = new Scanner(System.in);
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, StandardCharsets.UTF_8, true))) {
-            while (!OUT.equals(userQuestion)) {
-                System.out.print(System.lineSeparator() + "User : ");
-                userQuestion = scanner.nextLine();
-                bufferedWriter.write("User : " + userQuestion + System.lineSeparator());
-                if (STOP.equals(userQuestion)) {
-                    flag = false;
-                }
-                if (CONTINUE.equals(userQuestion)) {
-                    flag = true;
-                }
-                if (flag) {
-                    botAnswer = randomAnswer();
-                    System.out.print("Bot : " + botAnswer);
-                    bufferedWriter.write("Bot : " + botAnswer + System.lineSeparator());
-                }
+        List<String> arrayAnswers = Files.readAllLines(Paths.get(botAnswers), Charset.defaultCharset());
+        List<String> logDialog = new ArrayList<>();
+        while (!OUT.equals(userQuestion)) {
+            System.out.print(System.lineSeparator() + "User : ");
+            userQuestion = scanner.nextLine();
+            logDialog.add("User : " + userQuestion + System.lineSeparator());
+            if (STOP.equals(userQuestion)) {
+                flag = false;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+            if (CONTINUE.equals(userQuestion)) {
+                flag = true;
+            }
+            if (flag) {
+                int random = (int) (Math.random() * arrayAnswers.size());
+                String botAnswer = arrayAnswers.get(random);
+                System.out.print("Bot : " + botAnswer);
+                logDialog.add("Bot : " + botAnswer + System.lineSeparator());
+            }
         }
-    }
-
-    public String randomAnswer() throws IOException {
-        RandomAccessFile f = new RandomAccessFile(botAnswers, "r");
-        final long randomLocation = (long) (Math.random() * f.length());
-        f.seek(randomLocation);
-        return f.readLine();
+        Files.write(Paths.get(path), logDialog);
     }
 
     public static void main(String[] args) throws IOException {
@@ -59,5 +54,6 @@ public class ConsoleChat {
                 "./chapter_002/data/botLog.txt",
                 "./chapter_002/data/logic.txt"
         );
+        cc.run();
     }
 }
