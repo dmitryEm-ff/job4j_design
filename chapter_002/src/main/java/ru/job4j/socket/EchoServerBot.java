@@ -17,6 +17,7 @@ public class EchoServerBot {
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
                     String str;
+                    String answer = "null";
                     while ((str = in.readLine()) != null && !str.isEmpty()) {
                         if (str.contains("Exit")) {
                             System.out.println(str);
@@ -25,15 +26,14 @@ public class EchoServerBot {
                         }
                         if (str.contains("Hello")) {
                             System.out.println(str);
-                            out.write("HTTP/1.1 200 OK\r\n\\".getBytes());
-                            out.write("Hello.".getBytes());
+                            answer = "Hello.";
                         } else {
                             System.out.println(str);
-                            out.write("HTTP/1.1 200 OK\r\n\\".getBytes());
-                            out.write("What.".getBytes());
+                            answer = "What.";
                         }
                     }
                     out.write("HTTP/1.1 200 OK\r\n\\".getBytes());
+                    out.write(answer.getBytes());
                 }
             }
         }
