@@ -27,7 +27,11 @@ public class ConsoleChat {
         boolean flag = true;
         String userQuestion = "";
         Scanner scanner = new Scanner(System.in);
-        List<String> arrayAnswers = Files.readAllLines(Paths.get(botAnswers), Charset.defaultCharset());
+//        List<String> arrayAnswers = Files.readAllLines(Paths.get(botAnswers), Charset.defaultCharset());
+        List<String> arrayAnswers = new ArrayList<>();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(botAnswers))) {
+            bufferedReader.lines().forEach(arrayAnswers::add);
+        }
         List<String> logDialog = new ArrayList<>();
         while (!OUT.equals(userQuestion)) {
             System.out.print(System.lineSeparator() + "User : ");
