@@ -17,10 +17,9 @@ public class EchoServer {
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
                     String str;
-                    while (!(str = in.readLine()).isEmpty()) {
+                    while ((str = in.readLine()) != null && !str.isEmpty()) {
                         if (str.contains("Bye")) {
                             System.out.println(str);
-                            out.write("HTTP/1.1 200 OK\r\n\\".getBytes());
                             flag = false;
                             break;
                         }
