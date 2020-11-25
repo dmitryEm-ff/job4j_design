@@ -26,7 +26,7 @@ public class SimpleArray<T> implements Iterable<T> {
     public Iterator<T> iterator() {
         return new Iterator<T>() {
 
-            private int expectedModCount  = modCount;
+            private final int expectedModCount  = modCount;
             int currentIndex = 0;
 
             @Override
