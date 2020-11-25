@@ -10,8 +10,7 @@ import java.net.Socket;
 public class EchoServerBot {
     public static void main(String[] args) throws IOException {
         try (ServerSocket server = new ServerSocket(9000)) {
-            boolean flag = true;
-            while (flag) {
+            while (!server.isClosed()) {
                 Socket socket = server.accept();
                 try (OutputStream out = socket.getOutputStream();
                      BufferedReader in = new BufferedReader(
@@ -21,8 +20,7 @@ public class EchoServerBot {
                     if (str != null && !str.isEmpty()) {
                         if (str.contains("Exit")) {
                             System.out.println(str);
-                            flag = false;
-                            break;
+                            server.close();
                         }
                         if (str.contains("Hello")) {
                             System.out.println(str);
