@@ -16,9 +16,9 @@ public class EchoServerBot {
                 try (OutputStream out = socket.getOutputStream();
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
-                    String str;
+                    String str = in.readLine();
                     String answer = "null";
-                    while ((str = in.readLine()) != null && !str.isEmpty()) {
+                    if (str != null && !str.isEmpty()) {
                         if (str.contains("Exit")) {
                             System.out.println(str);
                             flag = false;
@@ -34,6 +34,7 @@ public class EchoServerBot {
                     }
                     out.write(("HTTP/1.1 200 OK\r\n\r\n").getBytes());
                     out.write(answer.getBytes());
+                    out.flush();
                 }
             }
         }
