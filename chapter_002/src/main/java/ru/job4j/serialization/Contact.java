@@ -23,10 +23,7 @@ public class Contact implements Serializable {
 
     @Override
     public String toString() {
-        return "Contact{" +
-                "zipCode=" + zipCode +
-                ", phone='" + phone + '\'' +
-                '}';
+        return "Contact{" + "zipCode=" + zipCode + ", phone='" + phone + '\'' + '}';
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
@@ -45,7 +42,7 @@ public class Contact implements Serializable {
              ObjectInputStream ois =
                      new ObjectInputStream(fis)) {
             final Contact contactFromFile = (Contact) ois.readObject();
-            System.out.println(contactFromFile);
+            System.out.println(contactFromFile + " equal to " + contact );
         }
     }
 }
