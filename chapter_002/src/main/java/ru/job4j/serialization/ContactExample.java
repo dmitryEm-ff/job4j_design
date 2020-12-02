@@ -43,7 +43,7 @@ public class ContactExample implements Serializable {
                      new ObjectInputStream(fis)) {
             final ContactExample contactFromFile = (ContactExample) ois.readObject();
             System.out.println(contactFromFile.getPhone().equals(contactExample.getPhone()));
-            System.out.println(contactFromFile.getZipCode()== contactExample.getZipCode());
+            System.out.println(contactFromFile.getZipCode() == contactExample.getZipCode());
             System.out.println(contactFromFile + " equal to " + contactExample);
         }
     }
