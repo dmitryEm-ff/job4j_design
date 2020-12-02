@@ -1,5 +1,8 @@
 package ru.job4j.serialization;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.Arrays;
 
 public class CarJson {
@@ -8,7 +11,7 @@ public class CarJson {
     private final CarParam carParam;
     private final String[] carOwner;
 
-    public CarJson(boolean gas, int yearOfManufacture, CarParam carParam, String[] carOwner) {
+    public CarJson(boolean gas, int yearOfManufacture, CarParam carParam, String... carOwner) {
         this.gas = gas;
         this.yearOfManufacture = yearOfManufacture;
         this.carParam = carParam;
@@ -26,6 +29,14 @@ public class CarJson {
     }
 
     public static void main(String[] args) {
+        CarJson carJson = new CarJson(true,
+                2012,
+                new CarParam("Lada", "white"),
+                "Igor", "Denis", "Vitaly");
+
+        final Gson gson = new GsonBuilder().create();
+        System.out.println(gson.toJson(carJson));
+
 
     }
 }
