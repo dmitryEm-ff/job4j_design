@@ -20,25 +20,30 @@ public class CarJson {
 
     @Override
     public String toString() {
-        return "CarJson{" +
-                "gas=" + gas +
-                ", yearOfManufacture=" + yearOfManufacture +
-                ", carParam=" + carParam +
-                ", carOwner=" + Arrays.toString(carOwner) +
-                '}';
+        return "CarJson{" + "gas=" + gas + ", yearOfManufacture=" + yearOfManufacture
+                + ", carParam=" + carParam + ", carOwner=" + Arrays.toString(carOwner) + '}';
     }
 
     public static void main(String[] args) {
-        CarJson carJson = new CarJson(
-                true,
-                2012,
-                new CarParam("Lada", "white"),
-                "Igor", "Denis", "Vitaly"
-        );
+        CarJson carJson = new CarJson(true, 2012,
+                new CarParam("Lada", "white"), "Igor", "Denis", "Vitaly");
 
         final Gson gson = new GsonBuilder().create();
         System.out.println(gson.toJson(carJson));
 
+        final String carJsonMod = "{"
+                + "\"gas\":false,"
+                + "\"yearOfManufacture\":2016,"
+                + "\"carParam\":"
+                + "{"
+                + "\"brand\":\"Niva\","
+                + "\"color\":\"black\""
+                + "},"
+                + "\"carOwner\":"
+                + "[\"Vanya\",\"Olya\",\"Masha\"]"
+                + "}";
 
+        final CarJson carJsonChanged = gson.fromJson(carJsonMod, CarJson.class);
+        System.out.println(carJsonChanged);
     }
 }

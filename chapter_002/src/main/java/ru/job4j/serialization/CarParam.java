@@ -11,9 +11,9 @@ public class CarParam {
 
     @Override
     public String toString() {
-        return "CarParam{" +
-                "brand='" + brand + '\'' +
-                ", color='" + color + '\'' +
-                '}';
+        return "CarParam{"
+                + "brand='" + brand + '\''
+                + ", color='" + color + '\''
+                + '}';
     }
 }
