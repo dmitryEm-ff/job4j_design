@@ -42,7 +42,9 @@ public class Contact implements Serializable {
              ObjectInputStream ois =
                      new ObjectInputStream(fis)) {
             final Contact contactFromFile = (Contact) ois.readObject();
-            System.out.println(contactFromFile + " equal to " + contact );
+            System.out.println(contactFromFile.getPhone().equals(contact.getPhone()));
+            System.out.println(contactFromFile.getZipCode()==contact.getZipCode());
+            System.out.println(contactFromFile + " equal to " + contact);
         }
     }
 }
