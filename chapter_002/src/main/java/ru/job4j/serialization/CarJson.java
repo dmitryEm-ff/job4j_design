@@ -29,10 +29,12 @@ public class CarJson {
     }
 
     public static void main(String[] args) {
-        CarJson carJson = new CarJson(true,
+        CarJson carJson = new CarJson(
+                true,
                 2012,
                 new CarParam("Lada", "white"),
-                "Igor", "Denis", "Vitaly");
+                "Igor", "Denis", "Vitaly"
+        );
 
         final Gson gson = new GsonBuilder().create();
         System.out.println(gson.toJson(carJson));
