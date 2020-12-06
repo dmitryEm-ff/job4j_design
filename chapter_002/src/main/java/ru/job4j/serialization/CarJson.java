@@ -9,10 +9,13 @@ import org.json.JSONObject;
 import java.util.Arrays;
 
 public class CarJson {
-    private final boolean gas;
-    private final int yearOfManufacture;
-    private final CarParam carParam;
-    private final String[] carOwner;
+    private boolean gas;
+    private int yearOfManufacture;
+    private CarParam carParam;
+    private String[] carOwner;
+
+    public CarJson() {
+    }
 
     public CarJson(boolean gas, int yearOfManufacture, CarParam carParam, String... carOwner) {
         this.gas = gas;
@@ -21,7 +24,7 @@ public class CarJson {
         this.carOwner = carOwner;
     }
 
-    public boolean isGas() {
+    public boolean getGas() {
         return gas;
     }
 
@@ -51,10 +54,10 @@ public class CarJson {
         JSONObject carBrandNColor = new JSONObject("{\"brand\":\"Lada\"}, {\"color\":\"white\"}");
 
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("gas", carJson.isGas());
+        jsonObject.put("gas", carJson.getGas());
         jsonObject.put("yearOfManufacture", carJson.getYearOfManufacture());
-        jsonObject.put("carParam", carBrandNColor);
-        jsonObject.put("carOwner", jsonArray);
+        jsonObject.put("carParam", carJson.getCarParam());
+        jsonObject.put("carOwner", carJson.getCarOwner());
 
         System.out.println(jsonObject.toString());
 
