@@ -6,4 +6,10 @@ public class FileFinderArgs {
     public FileFinderArgs(String[] args) {
         this.args = args;
     }
+
+    public void validation() {
+        if (args.length < 2) {
+            throw new IllegalArgumentException("Directory or type is not entered.");
+        }
+    }
 }
