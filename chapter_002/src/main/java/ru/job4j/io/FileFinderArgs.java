@@ -11,11 +11,11 @@ public class FileFinderArgs {
     }
 
     public void validation() {
-        if (args.length < 4) {
+        if (args.length < 7) {
             throw new IllegalArgumentException("Directory or other parameters is not entered.");
         }
-        if (!Files.isDirectory(Paths.get(args[0]))) {
-            throw  new IllegalArgumentException(String.format("Not directory %s", Paths.get(args[0])));
+        if (!Files.isDirectory(Paths.get(args[1]))) {
+            throw  new IllegalArgumentException(String.format("Not directory %s", Paths.get(args[1])));
         }
 
     }
