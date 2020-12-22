@@ -8,8 +8,8 @@ public class FileFinderArgs {
     }
 
     public void validation() {
-        if (args.length < 2) {
-            throw new IllegalArgumentException("Directory or type is not entered.");
+        if (args.length < 4) {
+            throw new IllegalArgumentException("Directory or other parameters is not entered.");
         }
     }
 }
