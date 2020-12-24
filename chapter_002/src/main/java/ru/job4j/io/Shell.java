@@ -11,18 +11,6 @@ public class Shell {
     private List<String> pathDir = new ArrayList<>();
 
     public void cd(String path) {
-//        if (path.endsWith("..")) {
-//            if (pathDir.size() < 1) {
-//                pathDir.add("/");
-//            } else if (pathDir.size() == 1) {
-//                pathDir.remove(0);
-//                pathDir.add("/");
-//            } else {
-//                pathDir.remove(pathDir.size() - 1);
-//            }
-//                return;
-//        }
-
         if (path == "/") {
             pathDir.removeAll(pathDir);
             pathDir.add("/");
@@ -36,7 +24,10 @@ public class Shell {
         }
         if (pathDir.get(pathDir.size() - 1).equals("/..")) {
             pathDir.remove(pathDir.size() - 1);
-            pathDir.set(pathDir.size() - 1, "/");
+            pathDir.remove(pathDir.size() - 1);
+            if (pathDir.size() == 0) {
+                pathDir.add("/");
+            }
         }
     }
 
@@ -46,13 +37,3 @@ public class Shell {
         return pathFull.toString();
     }
 }
-
-//            if (pathDir.size() <= 1) {
-//                pathDir.add(0, "/");
-//                return;
-//            } else {
-//                pathDir.remove(pathDir.size() - 1);
-//                return;
-//            }
-
-//            pathDir.add(path.substring(path.lastIndexOf('/') + 3));
