@@ -2,12 +2,13 @@ package ru.job4j.io;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Shell {
 
-    private List<String> pathDir = new ArrayList();
+    private List<String> pathDir = new ArrayList<>();
 
     public void cd(String path) {
 //        if (path.endsWith("..")) {
@@ -31,10 +32,10 @@ public class Shell {
             pathDir.add("/" + path);
         } else {
             String[] splittedStr = path.split("(?=/)");
-            pathDir = Arrays.asList(splittedStr);
+            Collections.addAll(pathDir, splittedStr);
         }
         if (pathDir.get(pathDir.size() - 1).equals("/..")) {
-            pathDir.remove("/..");
+            pathDir.remove(pathDir.size() - 1);
             pathDir.set(pathDir.size() - 1, "/");
         }
     }

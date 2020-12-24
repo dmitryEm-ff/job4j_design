@@ -44,4 +44,13 @@ public class ShellTest {
                 shell.pwd(), is("/")
         );
     }
+
+    @Test
+    public void whenLongCdBack() {
+        Shell shell = new Shell();
+        shell.cd("/user/downloads/films/..");
+        assertThat(
+                shell.pwd(), is("/user/downloads")
+        );
+    }
 }
