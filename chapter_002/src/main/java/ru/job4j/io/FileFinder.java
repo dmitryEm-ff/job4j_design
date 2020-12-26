@@ -21,9 +21,17 @@ public class FileFinder {
         return searcher.getPaths();
     }
 
+    public static void writeFiles(List<Path> pathList, FileFinderArgs ffa) throws IOException {
+        Files.write(Paths.get(FileFinderArgs.getArgs()[1]), (Iterable<? extends CharSequence>) pathList);
+    }
+
     public static void main(String[] args) throws IOException {
-        FileFinderArgs fileFinderArgs = new FileFinderArgs(args);
-        fileFinderArgs.validation();
+        FileFinderArgs ffa = new FileFinderArgs(args);
+        ffa.validation();
         List<Path> pathList = findFiles(Paths.get(args[1]), args[3]);
+        for (Path path : pathList) {
+            System.out.println(path.toAbsolutePath());
+        }
+        writeFiles(pathList, ffa);
     }
 }
