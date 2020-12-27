@@ -6,10 +6,6 @@ import java.nio.file.Paths;
 public class FileFinderArgs {
     private static String[] args;
 
-    public static String[] getArgs() {
-        return args;
-    }
-
     public FileFinderArgs(String[] args) {
         this.args = args;
     }
