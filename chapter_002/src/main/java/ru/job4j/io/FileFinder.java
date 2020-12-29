@@ -1,9 +1,12 @@
 package ru.job4j.io;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +26,13 @@ public class FileFinder {
     }
 
     public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        ArrayList<String> parameters = new ArrayList<String>();
+        for (int i = 0; i < 7; i++) {
+            parameters.add(reader.readLine());
+            System.out.println(parameters.get(i));
+        }
+
         FileFinderArgs ffa = new FileFinderArgs(args);
         ffa.validation();
         rootFile = Paths.get(args[1]);
