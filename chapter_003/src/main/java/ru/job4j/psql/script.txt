@@ -1,5 +1,7 @@
 create database cars_db;
 
+\c cars_db;
+
 create table cars(
     id serial primary key,
     model text,
