@@ -56,6 +56,9 @@ create table teens (
 
 insert into teens(name, gender) VALUES ('Vasya', 'M');
 insert into teens(name, gender) VALUES ('Ira', 'F');
+insert into teens(name, gender) VALUES ('Pavel', 'M');
+insert into teens(name, gender) VALUES ('Luda', 'F');
 
-select n.name, g.gender from teens n cross join teens g;
+select  (n.name, n.gender) as person1, (g.name, g.gender) as person2
+from teens n cross join teens g;
 
