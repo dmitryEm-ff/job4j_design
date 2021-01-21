@@ -61,4 +61,3 @@ insert into teens(name, gender) VALUES ('Luda', 'F');
 
 select  (n.name, n.gender) as person1, (g.name, g.gender) as person2
 from teens n cross join teens g;
-
