@@ -20,6 +20,7 @@ public class Config {
             read.lines()
                     .filter(s -> !s.contains("#") || !s.isEmpty())
                     .map(line -> line.split("="))
+                    .filter(keys -> keys.length == 2)
                     .forEach(key -> values.put(key[0], key[1]));
         } catch (Exception e) {
             e.printStackTrace();
