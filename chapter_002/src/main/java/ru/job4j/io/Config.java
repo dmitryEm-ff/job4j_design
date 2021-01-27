@@ -18,7 +18,7 @@ public class Config {
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             read.lines()
-                    .filter(s -> !s.contains("#") || !s.isEmpty())
+                    .filter(s -> !s.startsWith("#") || !s.isEmpty())
                     .map(line -> line.split("="))
                     .filter(keys -> keys.length == 2)
                     .forEach(key -> values.put(key[0], key[1]));
