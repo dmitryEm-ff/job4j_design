@@ -9,7 +9,7 @@ import ru.job4j.io.Config;
 public class ConnectionDemo {
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        Config config = new Config("app.properties");
+        Config config = new Config("C:\\projects\\job4j_design\\chapter_003\\src\\main\\resources");
         config.load();
 
         String url = config.value("hibernate.connection.url");
