@@ -1,0 +1,10 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<vehicle manufactured="2012" diesel="true">
+    <model>2108 VAZ</model>
+    <owners>
+        <owner>Igor</owner>
+        <owner>Denis</owner>
+        <owner>Vitaly</owner>
+    </owners>
+    <exterier color="white"></exterier>
+</vehicle>
