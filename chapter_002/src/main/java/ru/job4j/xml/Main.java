@@ -32,6 +32,5 @@ public class Main {
             Person result = (Person) unmarshaller.unmarshal(reader);
             System.out.println(result);
         }
-
     }
 }
