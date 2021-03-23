@@ -7,31 +7,37 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class CacheRealisation {
-    private static final Map<SoftReference<String>, SoftReference<Path>> CACHE = new HashMap<>();
+    private static final Map<String, String> CACHE = new HashMap<>();
 
-    public void readFromCache(String fileName) {
+    public void getCacheValue(String fileName) {
         if (!CACHE.containsKey(fileName)) {
-            CACHE.put(new SoftReference(fileName), new SoftReference(Paths.get("./chapter_004/data/" + fileName)));
+            CACHE.put(fileName, putCacheValue(fileName));
         }
+        System.out.println(CACHE.get(fileName));
+    }
+
+    public String putCacheValue(String fileName) {
+        String tmp;
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader("./chapter_004/data/" + fileName))) {
-            bufferedReader.lines().forEach(System.out::println);
+            tmp = bufferedReader.lines().collect(Collectors.joining(System.lineSeparator()));
         } catch (Exception e) {
             throw new IllegalStateException(e);
         }
+        return tmp;
     }
 
     public static void main(String[] args) {
         CacheRealisation cr = new CacheRealisation();
-        cr.readFromCache("Address.txt");
+        cr.getCacheValue("Address.txt");
         System.out.println(System.lineSeparator());
-        cr.readFromCache("Names.txt");
-        System.out.println(System.lineSeparator());
-        for (Map.Entry<SoftReference<String>, SoftReference<Path>> pair : CACHE.entrySet()) {
-            SoftReference<String> key = pair.getKey();
-            SoftReference<Path> value = pair.getValue();
-            System.out.println(key + " : " + value);
+        cr.getCacheValue("Names.txt");
+        for (Map.Entry<String, String> pair : CACHE.entrySet()) {
+            String key = pair.getKey();
+            String value = pair.getValue();
+            System.out.println(System.lineSeparator() + key + " : " + System.lineSeparator() + value);
         }
     }
 }
