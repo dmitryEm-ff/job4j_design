@@ -26,16 +26,4 @@ public class CacheRealisation {
         }
         return new SoftReference<String>(tmp);
     }
-
-    public static void main(String[] args) {
-        CacheRealisation cr = new CacheRealisation();
-        cr.getCacheValue("Address.txt");
-        System.out.println(System.lineSeparator());
-        cr.getCacheValue("Names.txt");
-        for (Map.Entry<String, SoftReference<String>> pair : CACHE.entrySet()) {
-            String key = pair.getKey();
-            SoftReference<String> value = pair.getValue();
-            System.out.println(System.lineSeparator() + key + " : " + System.lineSeparator() + value);
-        }
-    }
 }
