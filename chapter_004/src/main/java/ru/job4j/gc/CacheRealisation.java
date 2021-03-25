@@ -10,14 +10,16 @@ import java.util.stream.Collectors;
 public class CacheRealisation {
     private static final Map<String, SoftReference<String>> CACHE = new HashMap<>();
 
-    public void getCacheValue(String fileName) {
+    public static String getCacheValue(String fileName) {
         if (!CACHE.containsKey(fileName)) {
             CACHE.put(fileName, putCacheValue(fileName));
         }
-        System.out.println(CACHE.get(fileName));
+        String rsl = CACHE.get(fileName).get();
+        System.out.println(rsl);
+        return rsl;
     }
 
-    public SoftReference<String> putCacheValue(String fileName) {
+    public static SoftReference<String> putCacheValue(String fileName) {
         String tmp;
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader("./chapter_004/data/" + fileName))) {
             tmp = bufferedReader.lines().collect(Collectors.joining(System.lineSeparator()));
@@ -29,13 +31,13 @@ public class CacheRealisation {
 
     public static void main(String[] args) {
         CacheRealisation cr = new CacheRealisation();
-        cr.getCacheValue("Address.txt");
+        String addressCache = cr.getCacheValue("Address.txt");
         System.out.println(System.lineSeparator());
-        cr.getCacheValue("Names.txt");
+        String namesCache = cr.getCacheValue("Names.txt");
         for (Map.Entry<String, SoftReference<String>> pair : CACHE.entrySet()) {
             String key = pair.getKey();
             SoftReference<String> value = pair.getValue();
-            System.out.println(System.lineSeparator() + key + " : " + System.lineSeparator() + value);
+            System.out.println(System.lineSeparator() + key + " : " + System.lineSeparator() + value.get());
         }
     }
 }
