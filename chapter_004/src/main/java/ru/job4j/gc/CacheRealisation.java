@@ -11,22 +11,26 @@ public class CacheRealisation {
     private static final Map<String, SoftReference<String>> CACHE = new HashMap<>();
 
     public static String getCacheValue(String fileName) {
-        if (!CACHE.containsKey(fileName)) {
-            CACHE.put(fileName, putCacheValue(fileName));
+        String strong = null;
+        SoftReference<String> soft = CACHE.get(fileName);
+        if (soft == null) {
+            strong = putCacheValue(fileName);
+            CACHE.put(fileName, new SoftReference(strong));
+        } else {
+            strong = soft.get();
         }
-        String rsl = CACHE.get(fileName).get();
-        System.out.println(rsl);
-        return rsl;
+        System.out.println(strong);
+        return strong;
     }
 
-    public static SoftReference<String> putCacheValue(String fileName) {
+    public static String putCacheValue(String fileName) {
         String tmp;
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader("./chapter_004/data/" + fileName))) {
             tmp = bufferedReader.lines().collect(Collectors.joining(System.lineSeparator()));
         } catch (Exception e) {
             throw new IllegalStateException(e);
         }
-        return new SoftReference<String>(tmp);
+        return tmp;
     }
 
     public static void main(String[] args) {
@@ -34,6 +38,8 @@ public class CacheRealisation {
         String addressCache = cr.getCacheValue("Address.txt");
         System.out.println(System.lineSeparator());
         String namesCache = cr.getCacheValue("Names.txt");
+        System.out.println(System.lineSeparator());
+        String addressCacheAgain = cr.getCacheValue("Address.txt");
         for (Map.Entry<String, SoftReference<String>> pair : CACHE.entrySet()) {
             String key = pair.getKey();
             SoftReference<String> value = pair.getValue();
