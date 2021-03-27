@@ -4,5 +4,5 @@ public interface Cache<K, V> {
 
     V getCacheValue(K key);
 
-    V putCacheValue(K key);
+    V readCacheValue(K key);
 }

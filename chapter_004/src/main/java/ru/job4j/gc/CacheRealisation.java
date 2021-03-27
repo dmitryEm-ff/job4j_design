@@ -21,7 +21,7 @@ public class CacheRealisation implements Cache<String, String> {
             strong = cacheMap.get(fileName).get();
         }
         if (strong == null || strong.length() == 0 || !cacheMap.containsKey(fileName)) {
-            strong = putCacheValue(fileName);
+            strong = readCacheValue(fileName);
             cacheMap.put(fileName, new SoftReference<>(strong));
         }
         System.out.println(strong);
@@ -29,7 +29,7 @@ public class CacheRealisation implements Cache<String, String> {
     }
 
     @Override
-    public String putCacheValue(String fileName) {
+    public String readCacheValue(String fileName) {
         String tmp = "";
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader("./chapter_004/data/" + fileName))) {
             tmp = bufferedReader.lines().collect(Collectors.joining(System.lineSeparator()));
