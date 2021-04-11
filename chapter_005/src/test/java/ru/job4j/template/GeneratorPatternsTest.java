@@ -29,7 +29,8 @@ public class GeneratorPatternsTest {
         Map<String, String> args = new HashMap<>();
         args.put("name", "Petr Arsentev");
         args.put("subject", "you");
-        String out = new GeneratorPatterns().produce(template, args);
+        GeneratorPatterns testGen = new GeneratorPatterns();
+        String out = testGen.produce(template, args);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -39,6 +40,7 @@ public class GeneratorPatternsTest {
         args.put("name", "Petr Arsentev");
         args.put("subject", "you");
         args.put("profession", "worker");
-        String out = new GeneratorPatterns().produce(template, args);
+        GeneratorPatterns testGen = new GeneratorPatterns();
+        String out = testGen.produce(template, args);
     }
 }
