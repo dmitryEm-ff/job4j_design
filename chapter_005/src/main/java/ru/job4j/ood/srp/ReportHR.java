@@ -12,6 +12,14 @@ public class ReportHR implements Report {
 
     @Override
     public String generate(Predicate<Employee> filter) {
-        return null;
+        StringBuilder text = new StringBuilder();
+        text.append("Name; Salary;");
+        text.append(System.lineSeparator());
+        for (Employee employee : store.findBy(filter)) {
+            text.append(employee.getName()).append(";")
+                    .append(employee.getSalary()).append(";")
+                    .append(System.lineSeparator());
+        }
+        return text.toString();
     }
 }

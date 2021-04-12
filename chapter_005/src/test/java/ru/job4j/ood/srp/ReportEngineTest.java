@@ -45,7 +45,7 @@ public class ReportEngineTest {
 
     @Test
     public void whenHRRequestTwoColumnsDesc() {
-        MemStore store = new MemStore();
+        HRStore store = new HRStore();
         Calendar now = Calendar.getInstance();
         Employee worker1 = new Employee("Ivan", now, now, 100);
         Employee worker2 = new Employee("Alex", now, now, 150);
@@ -81,8 +81,7 @@ public class ReportEngineTest {
                 .append("           <salary> " +  worker.getSalary() + " </salary>").append(System.lineSeparator())
                 .append("       </employee>").append(System.lineSeparator())
                 .append("   </body>").append(System.lineSeparator())
-                .append("</html>").append(System.lineSeparator())
-                .append(System.lineSeparator());
+                .append("</html>").append(System.lineSeparator());
         assertThat(engine.generate(em -> true), is(expect.toString()));
     }
 }

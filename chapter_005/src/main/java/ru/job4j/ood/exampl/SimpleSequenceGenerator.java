@@ -1,4 +1,7 @@
-package ru.job4j.ood.srp;
+package ru.job4j.ood.exampl;
+
+import ru.job4j.ood.exampl.NumberGenerator;
+import ru.job4j.ood.exampl.SequenceGenerator;
 
 import java.util.List;
 import java.util.Random;
