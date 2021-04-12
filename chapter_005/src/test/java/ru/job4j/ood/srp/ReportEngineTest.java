@@ -26,10 +26,10 @@ public class ReportEngineTest {
     }
 
     @Test
-    public void whenAccountantRequest() {
+    public void whenAccountantRequestEURtoRUB() {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
-        Employee worker = new Employee("Ivan", now, now, 100.11);
+        Employee worker = new Employee("Ivan", now, now, 100);
         store.add(worker);
         Report engine = new ReportAccountant(store);
         StringBuilder expect = new StringBuilder()
@@ -44,7 +44,7 @@ public class ReportEngineTest {
     }
 
     @Test
-    public void whenHRRequest() {
+    public void whenHRRequestTwoColumnsDesc() {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker1 = new Employee("Ivan", now, now, 100);
@@ -65,19 +65,23 @@ public class ReportEngineTest {
     }
 
     @Test
-    public void whenProgrammerRequest() {
+    public void whenProgrammerRequestHTML() {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
         store.add(worker);
-        Report engine = new ReportEngine(store);
+        Report engine = new ReportProgrammer(store);
         StringBuilder expect = new StringBuilder()
-                .append("Name; Hired; Fired; Salary;")
-                .append(System.lineSeparator())
-                .append(worker.getName()).append(";")
-                .append(worker.getHired()).append(";")
-                .append(worker.getFired()).append(";")
-                .append(worker.getSalary()).append(";")
+                .append("<html>").append(System.lineSeparator())
+                .append("   <body>").append(System.lineSeparator())
+                .append("       <employee>").append(System.lineSeparator())
+                .append("           <name> " + worker.getName() + " </name>").append(System.lineSeparator())
+                .append("           <hired> " +  worker.getHired() + " </hired>").append(System.lineSeparator())
+                .append("           <fired> " +  worker.getFired() + " </fired>").append(System.lineSeparator())
+                .append("           <salary> " +  worker.getSalary() + " </salary>").append(System.lineSeparator())
+                .append("       </employee>").append(System.lineSeparator())
+                .append("   </body>").append(System.lineSeparator())
+                .append("</html>").append(System.lineSeparator())
                 .append(System.lineSeparator());
         assertThat(engine.generate(em -> true), is(expect.toString()));
     }
