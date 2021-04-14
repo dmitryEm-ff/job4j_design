@@ -5,9 +5,11 @@ import java.util.function.Predicate;
 public class ReportEngine implements Report {
 
     private Store store;
+    private Format format;
 
-    public ReportEngine(Store store) {
+    public ReportEngine(Store store, Format format) {
         this.store = store;
+        this.format = format;
     }
 
     @Override
@@ -22,6 +24,6 @@ public class ReportEngine implements Report {
                     .append(employee.getSalary()).append(";")
                     .append(System.lineSeparator());
         }
-        return text.toString();
+        return (String) format.formatter(text.toString());
     }
 }
