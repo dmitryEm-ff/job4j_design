@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Shop {
-    private List<Food> store = new ArrayList<>();
+    private final List<Food> store = new ArrayList<>();
 
-    public Shop(List<Food> store) {
-        this.store = store;
+    public void add(Food food) {
+        store.add(food);
     }
 }
