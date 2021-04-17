@@ -7,7 +7,7 @@ import static java.time.temporal.ChronoUnit.*;
 public class ControlQuality implements Control {
 
     @Override
-    public Storage sort(Food food) {
+    public Storage applyQualityControl(Food food) {
         Storage storage = findStorage(food);
         storage.addFood(food);
         return storage;
