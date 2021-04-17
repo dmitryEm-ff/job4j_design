@@ -7,12 +7,7 @@ public class Shop implements Storage {
     private final List<Food> store = new ArrayList<>();
 
     @Override
-    public void add(Food food) {
+    public void addFood(Food food) {
         store.add(food);
-    }
-
-    @Override
-    public List<Food> getAll() {
-        return store;
     }
 }
