@@ -28,15 +28,18 @@ public class ControlQuality implements Control {
         if (isWarehouse(food, createdToExp, createdToCurrent)) {
             return new Warehouse();
         }
+        if (isShopWithDiscount(food, createdToExp, createdToCurrent)) {
+            return new Shop();
+        }
         return new Shop();
     }
 
     public boolean isWarehouse(Food food, int createdToExp, int createdToCurrent) {
-        return false;
-
+        int point = (createdToExp / 100) * 25;
+        return createdToCurrent < point;
     }
 
-    public boolean isShop(Food food, int createdToExp, int createdToCurrent) {
+    public boolean isShopWithDiscount(Food food, int createdToExp, int createdToCurrent) {
         return false;
 
     }
