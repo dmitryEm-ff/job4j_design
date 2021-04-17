@@ -28,9 +28,21 @@ public class ControlQuality implements Control {
     }
 
     public boolean isWarehouse(Food food) {
-        int full = (int) DAYS.between(food.getCreateDate(), food.getExpiryDate());
+        float full = (int) DAYS.between(food.getCreateDate(), food.getExpiryDate());
         int current = (int) DAYS.between(food.getCreateDate(), LocalDateTime.now());
-        int point = (full / 100) * 25;
+        float point = (full / 100) * 25;
         return current < point;
+    }
+
+    public static void main(String[] args) {
+        ControlQuality controlQuality = new ControlQuality();
+        Food beer = new Drinks("beer",
+                LocalDateTime.of(2021, 5, 30, 0, 0),
+                LocalDateTime.of(2021, 4, 15, 0, 0),
+                150, 0);
+        Storage storage = controlQuality.applyQualityControl(beer);
+        for (Food f : storage.getAll()) {
+            System.out.println(storage.getClass() + " : " + f.getName());
+        }
     }
 }

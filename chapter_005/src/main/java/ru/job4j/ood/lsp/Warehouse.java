@@ -10,4 +10,9 @@ public class Warehouse implements Storage {
     public void addFood(Food food) {
         store.add(food);
     }
+
+    @Override
+    public List<Food> getAll() {
+        return store;
+    }
 }
