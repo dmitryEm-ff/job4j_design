@@ -4,4 +4,5 @@ public interface Parking {
 
     boolean park(Car car);
     Car[] getAll();
+    int getFreeSpace();
 }

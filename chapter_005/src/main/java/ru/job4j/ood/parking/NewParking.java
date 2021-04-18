@@ -17,4 +17,9 @@ public class NewParking implements Parking {
     public Car[] getAll() {
         return new Car[0];
     }
+
+    @Override
+    public int getFreeSpace() {
+        return 0;
+    }
 }
