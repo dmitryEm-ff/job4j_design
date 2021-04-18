@@ -9,6 +9,11 @@ public class Trash implements Storage {
     private final List<Food> store = new ArrayList<>();
 
     @Override
+    public boolean accept(Food food) {
+        return DAYS.between(LocalDateTime.now(), food.getExpiryDate()) < 0;
+    }
+
+    @Override
     public void addFood(Food food) {
         store.add(food);
     }

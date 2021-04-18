@@ -1,36 +1,24 @@
 package ru.job4j.ood.lsp;
 
-import java.time.LocalDateTime;
-
-import static java.time.temporal.ChronoUnit.*;
+import java.util.Map;
 
 public class ControlQuality implements Control {
 
+    private final Map<String, Storage> storageMap;
+
+    public ControlQuality(Map<String, Storage> storageMap) {
+        this.storageMap = storageMap;
+    }
+
     @Override
     public Storage applyQualityControl(Food food) {
-        Storage storage = findStorage(food);
-        storage.addFood(food);
-        return storage;
-    }
-
-    public Storage findStorage(Food food) {
-        if (isTrash(food)) {
-            return new Trash();
+        for (Map.Entry<String, Storage> s : storageMap.entrySet()) {
+            Storage storage = s.getValue();
+            if (storage.accept(food)) {
+                storage.addFood(food);
+                return storage;
+            }
         }
-        if (isWarehouse(food)) {
-            return new Warehouse();
-        }
-        return new Shop();
-    }
-
-    public boolean isTrash(Food food) {
-        return DAYS.between(LocalDateTime.now(), food.getExpiryDate()) < 0;
-    }
-
-    public boolean isWarehouse(Food food) {
-        float full = (int) DAYS.between(food.getCreateDate(), food.getExpiryDate());
-        int current = (int) DAYS.between(food.getCreateDate(), LocalDateTime.now());
-        float point = (full / 100) * 25;
-        return current < point;
+        return null;
     }
 }
