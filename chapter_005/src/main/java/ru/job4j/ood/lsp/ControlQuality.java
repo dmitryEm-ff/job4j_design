@@ -1,22 +1,21 @@
 package ru.job4j.ood.lsp;
 
-import java.util.Map;
+import java.util.List;
 
 public class ControlQuality implements Control {
 
-    private final Map<String, Storage> storageMap;
+    private final List<Storage> storageMap;
 
-    public ControlQuality(Map<String, Storage> storageMap) {
+    public ControlQuality(List<Storage> storageMap) {
         this.storageMap = storageMap;
     }
 
     @Override
     public Storage applyQualityControl(Food food) {
-        for (Map.Entry<String, Storage> s : storageMap.entrySet()) {
-            Storage storage = s.getValue();
-            if (storage.accept(food)) {
-                storage.addFood(food);
-                return storage;
+        for (Storage s : storageMap) {
+            if (s.accept(food)) {
+                s.addFood(food);
+                return s;
             }
         }
         return null;
