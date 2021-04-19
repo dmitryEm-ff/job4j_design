@@ -35,9 +35,4 @@ public class Shop implements Storage {
     public List<Food> getAll() {
         return store;
     }
-
-    private void discountToFood(Food food, int percent) {
-        food.setDiscount(percent);
-        food.setPrice(food.getPrice() - ((food.getPrice() / 100) * percent));
-    }
 }
