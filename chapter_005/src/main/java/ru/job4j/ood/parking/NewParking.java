@@ -1,11 +1,16 @@
 package ru.job4j.ood.parking;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NewParking implements Parking {
 
-    private final int size;
+    private final int smallCars;
+    private final int bigCars;
 
-    public NewParking(int size) {
-        this.size = size;
+    public NewParking(int smallCars, int bigCars) {
+        this.smallCars = smallCars;
+        this.bigCars = bigCars;
     }
 
     @Override
@@ -14,12 +19,17 @@ public class NewParking implements Parking {
     }
 
     @Override
-    public Car[] getAll() {
-        return new Car[0];
+    public List<Car> getAll() {
+        return new ArrayList();
     }
 
     @Override
-    public int getFreeSpace() {
-        return 0;
+    public List<Car> getFreeSpaceBigCar() {
+        return new ArrayList();
+    }
+
+    @Override
+    public List<Car> getFreeSpaceSmallCar() {
+        return new ArrayList();
     }
 }

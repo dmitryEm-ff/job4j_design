@@ -1,8 +1,11 @@
 package ru.job4j.ood.parking;
 
-public class CargoCar extends Car {
+public class CargoCar implements Car {
 
-    public CargoCar(int size) {
-        super(size);
+    private final int size = 3;
+
+    @Override
+    public int getSize() {
+        return size;
     }
 }

@@ -1,8 +1,11 @@
 package ru.job4j.ood.parking;
 
+import java.util.List;
+
 public interface Parking {
 
     boolean park(Car car);
-    Car[] getAll();
-    int getFreeSpace();
+    List<Car> getAll();
+    List<Car> getFreeSpaceBigCar();
+    List<Car> getFreeSpaceSmallCar();
 }

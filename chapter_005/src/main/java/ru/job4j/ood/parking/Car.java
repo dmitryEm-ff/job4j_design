@@ -1,18 +1,6 @@
 package ru.job4j.ood.parking;
 
-public class Car {
+public interface Car {
 
-    private int size;
-
-    public Car(int size) {
-        this.size = size;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
+    int getSize();
 }
