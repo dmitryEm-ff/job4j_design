@@ -24,12 +24,12 @@ public class NewParking implements Parking {
     }
 
     @Override
-    public List<Car> getFreeSpaceBigCar() {
-        return new ArrayList();
+    public int getFreeSpaceBigCar() {
+        return 0;
     }
 
     @Override
-    public List<Car> getFreeSpaceSmallCar() {
-        return new ArrayList();
+    public int getFreeSpaceSmallCar() {
+        return 0;
     }
 }
