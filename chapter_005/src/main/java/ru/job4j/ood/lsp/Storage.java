@@ -8,8 +8,7 @@ public interface Storage {
     void addFood(Food food);
     List<Food> getAll();
 
-    default void discountToFood(Food food, int percent) {
-        food.setDiscount(percent);
-        food.setPrice(food.getPrice() - ((food.getPrice() / 100) * percent));
+    default int getPercent(Food food) {
+        return (int) ((food.getPrice() / 100) * food.getDiscount());
     }
 }
