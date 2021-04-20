@@ -1,6 +1,9 @@
 package ru.job4j.ood.parking;
 
 import org.junit.Test;
+
+import java.util.List;
+
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -39,14 +42,18 @@ public class NewParkingTest {
     }
 
     @Test
-    public void getAll() {
-    }
-
-    @Test
     public void getFreeSpaceBigCar() {
+        NewParking newParking = new NewParking(10, 5);
+        newParking.park(new CargoCar(4));
+        newParking.park(new CargoCar(4));
+        assertThat(newParking.getFreeSpaceBigCar(), is(7));
     }
 
     @Test
     public void getFreeSpaceSmallCar() {
+        NewParking newParking = new NewParking(10, 5);
+        newParking.park(new PassengerCar());
+        newParking.park(new PassengerCar());
+        assertThat(newParking.getFreeSpaceSmallCar(), is(8));
     }
 }
