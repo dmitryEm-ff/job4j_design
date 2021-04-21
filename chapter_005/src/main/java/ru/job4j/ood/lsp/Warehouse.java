@@ -11,10 +11,7 @@ public class Warehouse implements Storage {
 
     @Override
     public boolean accept(Food food) {
-        float full = (int) DAYS.between(food.getCreateDate(), food.getExpiryDate());
-        int current = (int) DAYS.between(food.getCreateDate(), LocalDateTime.now());
-        float point = (full / 100) * 25;
-        return current < point;
+        return getDaysCurrent(food) < getDaysAnyPercent(food, 25);
     }
 
     @Override

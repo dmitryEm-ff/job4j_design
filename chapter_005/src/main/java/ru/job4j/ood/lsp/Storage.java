@@ -1,6 +1,9 @@
 package ru.job4j.ood.lsp;
 
+import java.time.LocalDateTime;
 import java.util.List;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 public interface Storage {
 
@@ -8,7 +11,23 @@ public interface Storage {
     void addFood(Food food);
     List<Food> getAll();
 
-    default int getPercent(Food food) {
+    default int getDiscount(Food food) {
         return (int) ((food.getPrice() / 100) * food.getDiscount());
+    }
+
+    default float getDaysFull(Food food) {
+        return DAYS.between(food.getCreateDate(), food.getExpiryDate());
+    }
+
+    default int getDaysCurrent(Food food) {
+        return (int) DAYS.between(food.getCreateDate(), LocalDateTime.now());
+    }
+
+    default int getDaysNowToExp(Food food) {
+        return (int) DAYS.between(LocalDateTime.now(), food.getExpiryDate());
+    }
+
+    default float getDaysAnyPercent(Food food, int percent) {
+        return (getDaysFull(food) / 100) * percent;
     }
 }
