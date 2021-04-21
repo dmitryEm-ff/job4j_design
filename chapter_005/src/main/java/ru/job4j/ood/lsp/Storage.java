@@ -15,8 +15,8 @@ public interface Storage {
         return (int) ((food.getPrice() / 100) * food.getDiscount());
     }
 
-    default float getDaysFull(Food food) {
-        return DAYS.between(food.getCreateDate(), food.getExpiryDate());
+    default int getDaysFull(Food food) {
+        return (int) DAYS.between(food.getCreateDate(), food.getExpiryDate());
     }
 
     default int getDaysCurrent(Food food) {
@@ -28,6 +28,6 @@ public interface Storage {
     }
 
     default int getDaysAnyPercent(Food food, int percent) {
-        return (int) ((getDaysFull(food) / 100) * percent);
+        return (int) ((getDaysFull(food) / 100.0) * percent);
     }
 }
