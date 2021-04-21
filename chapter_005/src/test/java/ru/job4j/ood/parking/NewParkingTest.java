@@ -13,47 +13,47 @@ public class NewParkingTest {
 
     @Test
     public void whenParkingPassCar() {
-        NewParking newParking = new NewParking(10, 5);
-        newParking.park(new PassengerCar());
-        assertThat(newParking.getFreeSpaceSmallCar(), is(9));
+        Parking parking = new NewParking(10, 5);
+        parking.park(new PassengerCar());
+        assertThat(parking.getFreeSpaceSmallCar(), is(9));
     }
 
     @Test
     public void whenParkingCargoCar() {
-        NewParking newParking = new NewParking(10, 5);
-        newParking.park(new CargoCar(4));
-        assertThat(newParking.getFreeSpaceBigCar(), is(4));
+        Parking parking = new NewParking(10, 5);
+        parking.park(new CargoCar(4));
+        assertThat(parking.getFreeSpaceBigCar(), is(4));
     }
 
     @Test
     public void whenParkingCargoCarOutFreeSpaceInBigCar() {
-        NewParking newParking = new NewParking(10, 1);
-        newParking.park(new CargoCar(4));
-        newParking.park(new CargoCar(4));
-        assertThat(newParking.getFreeSpaceBigCar(), is(0));
-        assertThat(newParking.getFreeSpaceSmallCar(), is(6));
+        Parking parking = new NewParking(10, 1);
+        parking.park(new CargoCar(4));
+        parking.park(new CargoCar(4));
+        assertThat(parking.getFreeSpaceBigCar(), is(0));
+        assertThat(parking.getFreeSpaceSmallCar(), is(6));
     }
 
     @Test
     public void whenParkingCargoCarIsFail() {
-        NewParking newParking = new NewParking(5, 0);
-        newParking.park(new PassengerCar());
-        assertThat(newParking.park(new CargoCar(5)), is(false));
+        Parking parking = new NewParking(5, 0);
+        parking.park(new PassengerCar());
+        assertThat(parking.park(new CargoCar(5)), is(false));
     }
 
     @Test
     public void getFreeSpaceBigCar() {
-        NewParking newParking = new NewParking(10, 5);
-        newParking.park(new CargoCar(4));
-        newParking.park(new CargoCar(4));
-        assertThat(newParking.getFreeSpaceBigCar(), is(7));
+        Parking parking = new NewParking(10, 5);
+        parking.park(new CargoCar(4));
+        parking.park(new CargoCar(4));
+        assertThat(parking.getFreeSpaceBigCar(), is(7));
     }
 
     @Test
     public void getFreeSpaceSmallCar() {
-        NewParking newParking = new NewParking(10, 5);
-        newParking.park(new PassengerCar());
-        newParking.park(new PassengerCar());
-        assertThat(newParking.getFreeSpaceSmallCar(), is(8));
+        Parking parking = new NewParking(10, 5);
+        parking.park(new PassengerCar());
+        parking.park(new PassengerCar());
+        assertThat(parking.getFreeSpaceSmallCar(), is(8));
     }
 }
