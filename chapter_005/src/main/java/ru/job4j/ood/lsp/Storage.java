@@ -28,6 +28,6 @@ public interface Storage {
     }
 
     default int getDaysAnyPercent(Food food, int percent) {
-        return Math.round((getDaysFull(food) / 100) * percent);
+        return (int) ((getDaysFull(food) / 100) * percent);
     }
 }
