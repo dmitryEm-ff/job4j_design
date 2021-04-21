@@ -27,7 +27,7 @@ public interface Storage {
         return (int) DAYS.between(LocalDateTime.now(), food.getExpiryDate());
     }
 
-    default float getDaysAnyPercent(Food food, int percent) {
-        return (getDaysFull(food) / 100) * percent;
+    default int getDaysAnyPercent(Food food, int percent) {
+        return (int) ((getDaysFull(food) / 100) * percent);
     }
 }
