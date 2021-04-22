@@ -11,7 +11,9 @@ public class Warehouse implements Storage {
 
     @Override
     public boolean accept(Food food) {
-        return getDaysCurrent(food) < getDaysAnyPercent(food, 25);
+        int full = calculatePercent(food.getCreateDate(), food.getExpiryDate());
+        int days25perc = (int) ((full / 100.0) * 25);
+        return calculatePercent(food.getCreateDate(), LocalDateTime.now()) < days25perc;
     }
 
     @Override

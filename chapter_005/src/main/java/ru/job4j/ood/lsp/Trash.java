@@ -10,7 +10,7 @@ public class Trash implements Storage {
 
     @Override
     public boolean accept(Food food) {
-        return getDaysNowToExp(food) < 0;
+        return calculatePercent(LocalDateTime.now(), food.getExpiryDate()) < 0;
     }
 
     @Override

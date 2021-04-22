@@ -12,9 +12,12 @@ public class Shop implements Storage {
 
     @Override
     public boolean accept(Food food) {
-        if (getDaysCurrent(food) > getDaysAnyPercent(food, 25) &&
-                getDaysCurrent(food) < getDaysFull(food)) {
-            if (getDaysCurrent(food) > getDaysAnyPercent(food, 75)) {
+        int full = calculatePercent(food.getCreateDate(), food.getExpiryDate());
+        int current = calculatePercent(food.getCreateDate(), LocalDateTime.now());
+        int days75perc = (int) ((full / 100.0) * 75);
+        int days25perc = (int) ((full / 100.0) * 25);
+        if (current > days25perc && current < full) {
+            if (current > days75perc) {
                 discountPercent = 30;
                 discountToFood(food, discountPercent);
             }
@@ -35,6 +38,6 @@ public class Shop implements Storage {
 
     public void discountToFood(Food food, int discountPercent) {
         food.setDiscount(discountPercent);
-        food.setPrice(food.getPrice() - getDiscount(food));
+        food.setPrice(food.getPrice() - ((food.getPrice() / 100) * food.getDiscount()));
     }
 }
