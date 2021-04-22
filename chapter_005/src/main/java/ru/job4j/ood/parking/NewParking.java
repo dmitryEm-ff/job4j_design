@@ -41,7 +41,7 @@ public class NewParking implements Parking {
     public List<Place> createSmallCarsList(int size) {
         List<Place> rsl = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            rsl.add(new Place());
+            rsl.add(new Place(i + 1, false));
         }
         return rsl;
     }
@@ -49,7 +49,7 @@ public class NewParking implements Parking {
     public List<Place> createBigCarsList(int size) {
         List<Place> rsl = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            rsl.add(new Place());
+            rsl.add(new Place(i + 1, false));
         }
         return rsl;
     }
