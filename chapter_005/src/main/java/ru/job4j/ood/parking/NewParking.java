@@ -10,8 +10,8 @@ public class NewParking implements Parking {
     private final List<Place> bigCarsArray;
 
     public NewParking(int smallCars, int bigCars) {
-        this.smallCarsArray = createSmallCarsList(smallCars);
-        this.bigCarsArray = createBigCarsList(bigCars);
+        this.smallCarsArray = createCarsList(smallCars);
+        this.bigCarsArray = createCarsList(bigCars);
     }
 
     @Override
@@ -39,15 +39,7 @@ public class NewParking implements Parking {
         return 0;
     }
 
-    public List<Place> createSmallCarsList(int size) {
-        List<Place> rsl = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            rsl.add(new Place(i + 1, false));
-        }
-        return rsl;
-    }
-
-    public List<Place> createBigCarsList(int size) {
+    public List<Place> createCarsList(int size) {
         List<Place> rsl = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             rsl.add(new Place(i + 1, false));
