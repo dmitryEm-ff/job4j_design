@@ -5,12 +5,12 @@ import java.util.List;
 
 public class NewParking implements Parking {
 
-    private final List<Car> smallCarsArray;
-    private final List<Car> bigCarsArray;
+    private final List<Place> smallCarsArray;
+    private final List<Place> bigCarsArray;
 
     public NewParking(int smallCars, int bigCars) {
-        this.smallCarsArray = new ArrayList<>(smallCars);
-        this.bigCarsArray = new ArrayList<>(bigCars);
+        this.smallCarsArray = createSmallCarsList(smallCars);
+        this.bigCarsArray = createBigCarsList(bigCars);
     }
 
     @Override
@@ -19,12 +19,12 @@ public class NewParking implements Parking {
     }
 
     @Override
-    public List<Car> getAllSmallCars() {
+    public List<Place> getAllSmallCars() {
         return smallCarsArray;
     }
 
     @Override
-    public List<Car> getAllBigCars() {
+    public List<Place> getAllBigCars() {
         return bigCarsArray;
     }
 
@@ -36,6 +36,22 @@ public class NewParking implements Parking {
     @Override
     public int getFreeSpaceSmallCar() {
         return 0;
+    }
+
+    public List<Place> createSmallCarsList(int size) {
+        List<Place> rsl = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            rsl.add(new Place());
+        }
+        return rsl;
+    }
+
+    public List<Place> createBigCarsList(int size) {
+        List<Place> rsl = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            rsl.add(new Place());
+        }
+        return rsl;
     }
 
     public static void main(String[] args) {

@@ -5,8 +5,8 @@ import java.util.List;
 public interface Parking {
 
     boolean park(Car car);
-    List<Car> getAllSmallCars();
-    List<Car> getAllBigCars();
+    List<Place> getAllSmallCars();
+    List<Place> getAllBigCars();
     int getFreeSpaceBigCar();
     int getFreeSpaceSmallCar();
 }
