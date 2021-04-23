@@ -3,6 +3,7 @@ package ru.job4j.ood.parking;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public class NewParking implements Parking {
 
@@ -31,12 +32,19 @@ public class NewParking implements Parking {
 
     @Override
     public int getFreeSpaceBigCar() {
-        return 0;
+        int rsl = (int) Stream.of(smallCarsArray, bigCarsArray)
+                .flatMap(x -> x.stream())
+                .filter(y -> !y.isStatus())
+                .count();
+        return rsl;
     }
 
     @Override
     public int getFreeSpaceSmallCar() {
-        return (int) smallCarsArray.stream().filter(x -> !x.isStatus()).count();
+        int rsl = (int) smallCarsArray.stream()
+                .filter(x -> !x.isStatus())
+                .count();
+        return rsl;
     }
 
     public List<Place> createCarsList(int size) {
@@ -71,5 +79,6 @@ public class NewParking implements Parking {
         }
 
         System.out.println(parking.getFreeSpaceSmallCar());
+        System.out.println(parking.getFreeSpaceBigCar());
     }
 }

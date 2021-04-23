@@ -43,10 +43,10 @@ public class Place {
 
     @Override
     public String toString() {
-        return "Place{" +
-                "placeNumber=" + placeNumber +
-                ", status=" + status +
-                ", car=" + car +
-                '}';
+        return "Place{"
+                + "placeNumber=" + placeNumber
+                + ", status=" + status
+                + ", car=" + car
+                + '}';
     }
 }

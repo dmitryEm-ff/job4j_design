@@ -11,8 +11,8 @@ public class PassengerCar implements Car {
 
     @Override
     public String toString() {
-        return "PassengerCar{" +
-                "size=" + size +
-                '}';
+        return "PassengerCar{"
+                + "size=" + size
+                + '}';
     }
 }
