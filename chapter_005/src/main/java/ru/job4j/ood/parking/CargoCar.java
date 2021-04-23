@@ -12,4 +12,11 @@ public class CargoCar implements Car {
     public int getSize() {
         return size;
     }
+
+    @Override
+    public String toString() {
+        return "CargoCar{" +
+                "size=" + size +
+                '}';
+    }
 }

@@ -36,7 +36,7 @@ public class NewParking implements Parking {
 
     @Override
     public int getFreeSpaceSmallCar() {
-        return 0;
+        return (int) smallCarsArray.stream().filter(x -> !x.isStatus()).count();
     }
 
     public List<Place> createCarsList(int size) {
@@ -56,9 +56,9 @@ public class NewParking implements Parking {
         Car cargoCar = new CargoCar(3);
 
         parking.getAllSmallCars().set(0, new Place(1, true, passengerCar));
-        parking.getAllBigCars().set(0, new Place(1, true, cargoCar));
         parking.getAllSmallCars().set(1, new Place(2, true, cargoCar));
-
+        parking.getAllSmallCars().set(2, new Place(3, true, passengerCar));
+        parking.getAllBigCars().set(0, new Place(1, true, cargoCar));
 
         for (Place p : parking.getAllSmallCars()) {
             Optional<Car> test1 = Optional.ofNullable(p.getCar());
@@ -69,5 +69,7 @@ public class NewParking implements Parking {
             Optional<Car> test2 = Optional.ofNullable(p.getCar());
             System.out.println(test2.orElse(null));
         }
+
+        System.out.println(parking.getFreeSpaceSmallCar());
     }
 }

@@ -8,4 +8,11 @@ public class PassengerCar implements Car {
     public int getSize() {
         return size;
     }
+
+    @Override
+    public String toString() {
+        return "PassengerCar{" +
+                "size=" + size +
+                '}';
+    }
 }

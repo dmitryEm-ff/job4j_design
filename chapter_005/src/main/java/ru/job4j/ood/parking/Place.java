@@ -40,4 +40,13 @@ public class Place {
     public void setCar(Car car) {
         this.car = car;
     }
+
+    @Override
+    public String toString() {
+        return "Place{" +
+                "placeNumber=" + placeNumber +
+                ", status=" + status +
+                ", car=" + car +
+                '}';
+    }
 }
