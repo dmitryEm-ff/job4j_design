@@ -39,7 +39,13 @@ public class NewParking implements Parking {
      */
     @Override
     public boolean park(Car car) {
-
+        Place place = freeSpaceFinder(car);
+        if (place != null) {
+            place.setStatus(true);
+            place.setCar(car);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -144,6 +150,28 @@ public class NewParking implements Parking {
             System.out.println(test1.orElse(null));
         }
 
+        System.out.println(System.lineSeparator());
+
+        for (Place p : parking.getAllBigCars()) {
+            Optional<Car> test2 = Optional.ofNullable(p.getCar());
+            System.out.println(test2.orElse(null));
+        }
+
+        System.out.println(parking.getFreeSpaceSmallCar());
+        System.out.println(parking.getFreeSpaceBigCar());
+
+        System.out.println(System.lineSeparator());
+
+        parking.park(new PassengerCar());
+        parking.park(new CargoCar(3));
+
+        for (Place p : parking.getAllSmallCars()) {
+            Optional<Car> test1 = Optional.ofNullable(p.getCar());
+            System.out.println(test1.orElse(null));
+        }
+
+        System.out.println(System.lineSeparator());
+
         for (Place p : parking.getAllBigCars()) {
             Optional<Car> test2 = Optional.ofNullable(p.getCar());
             System.out.println(test2.orElse(null));
@@ -157,7 +185,7 @@ public class NewParking implements Parking {
 //            for (int i = 0; i < smallCarsArray.size(); i++) {
 //                Place tmp1 = smallCarsArray.get(i);
 //                if (tmp1.isStatus()) {
-//                    tmp1.setStatus(false);
+//                    tmp1.setStatus(true);
 //                    smallCarsArray.set(i, tmp1);
 //                    return true;
 //                }
@@ -167,14 +195,14 @@ public class NewParking implements Parking {
 //            for (int i = 0; i < bigCarsArray.size(); i++) {
 //                Place tmp2 = bigCarsArray.get(i);
 //                if (tmp2.isStatus()) {
-//                    tmp2.setStatus(false);
+//                    tmp2.setStatus(true);
 //                    bigCarsArray.set(i, tmp2);
 //                    return true;
 //                } else {
 //                    for (int j = 0; j < smallCarsArray.size(); j++) {
 //                        Place tmp3 = smallCarsArray.get(j);
 //                        if (tmp3.isStatus()) {
-//                            tmp3.setStatus(false);
+//                            tmp3.setStatus(true);
 //                            smallCarsArray.set(j, tmp3);
 //                            return true;
 //                        }
