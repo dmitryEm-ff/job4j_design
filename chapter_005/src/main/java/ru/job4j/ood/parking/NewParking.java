@@ -48,7 +48,7 @@ public class NewParking implements Parking {
     }
 
     /**
-     * Method looking for free space for car
+     * Method looking for free space
      *
      * @param car
      * @return place
@@ -179,35 +179,4 @@ public class NewParking implements Parking {
         System.out.println(parking.getFreeSpaceSmallCar());
         System.out.println(parking.getFreeSpaceBigCar());
     }
-
-    //        if (car.getSize() == 1) {
-//            for (int i = 0; i < smallCarsArray.size(); i++) {
-//                Place tmp1 = smallCarsArray.get(i);
-//                if (tmp1.isStatus()) {
-//                    tmp1.setStatus(true);
-//                    smallCarsArray.set(i, tmp1);
-//                    return true;
-//                }
-//            }
-//            return false;
-//        } else {
-//            for (int i = 0; i < bigCarsArray.size(); i++) {
-//                Place tmp2 = bigCarsArray.get(i);
-//                if (tmp2.isStatus()) {
-//                    tmp2.setStatus(true);
-//                    bigCarsArray.set(i, tmp2);
-//                    return true;
-//                } else {
-//                    for (int j = 0; j < smallCarsArray.size(); j++) {
-//                        Place tmp3 = smallCarsArray.get(j);
-//                        if (tmp3.isStatus()) {
-//                            tmp3.setStatus(true);
-//                            smallCarsArray.set(j, tmp3);
-//                            return true;
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        return false;
 }
