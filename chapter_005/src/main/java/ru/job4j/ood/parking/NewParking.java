@@ -13,7 +13,6 @@ import java.util.stream.Stream;
  * @version 1.0
  * @since 20.04.2021
  */
-
 public class NewParking implements Parking {
 
     /**

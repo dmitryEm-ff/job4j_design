@@ -1,7 +1,17 @@
 package ru.job4j.ood.parking;
 
+/**
+ * Class of cargo cars
+ *
+ * @author Dmitry Emelyanov
+ * @version 1.0
+ * @since 20.04.2021
+ */
 public class CargoCar implements Car {
 
+    /**
+     * Car size
+     */
     private final int size;
 
     public CargoCar(int size) {

@@ -1,9 +1,27 @@
 package ru.job4j.ood.parking;
 
+/**
+ * Class of place
+ *
+ * @author Dmitry Emelyanov
+ * @version 1.0
+ * @since 20.04.2021
+ */
 public class Place {
 
+    /**
+     * Place number
+     */
     private int placeNumber;
+
+    /**
+     * Place status, taken or not
+     */
     private boolean status;
+
+    /**
+     * Car
+     */
     private Car car;
 
     public Place(int placeNumber, boolean status) {
