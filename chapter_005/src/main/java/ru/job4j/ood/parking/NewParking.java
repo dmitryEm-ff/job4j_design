@@ -1,9 +1,6 @@
 package ru.job4j.ood.parking;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Stream;
 
 /**
@@ -131,52 +128,52 @@ public class NewParking implements Parking {
         return rsl;
     }
 
-    public static void main(String[] args) {
-        Parking parking = new NewParking(10, 5);
-        System.out.println(parking.getAllSmallCars().size());
-        System.out.println(parking.getAllBigCars().size());
-
-        Car passengerCar = new PassengerCar();
-        Car cargoCar = new CargoCar(3);
-
-        parking.getAllSmallCars().set(0, new Place(1, true, passengerCar));
-        parking.getAllSmallCars().set(1, new Place(2, true, cargoCar));
-        parking.getAllSmallCars().set(2, new Place(3, true, passengerCar));
-        parking.getAllBigCars().set(0, new Place(1, true, cargoCar));
-
-        for (Place p : parking.getAllSmallCars()) {
-            Optional<Car> test1 = Optional.ofNullable(p.getCar());
-            System.out.println(test1.orElse(null));
-        }
-
-        System.out.println(System.lineSeparator());
-
-        for (Place p : parking.getAllBigCars()) {
-            Optional<Car> test2 = Optional.ofNullable(p.getCar());
-            System.out.println(test2.orElse(null));
-        }
-
-        System.out.println(parking.getFreeSpaceSmallCar());
-        System.out.println(parking.getFreeSpaceBigCar());
-
-        System.out.println(System.lineSeparator());
-
-        parking.park(new PassengerCar());
-        parking.park(new CargoCar(3));
-
-        for (Place p : parking.getAllSmallCars()) {
-            Optional<Car> test1 = Optional.ofNullable(p.getCar());
-            System.out.println(test1.orElse(null));
-        }
-
-        System.out.println(System.lineSeparator());
-
-        for (Place p : parking.getAllBigCars()) {
-            Optional<Car> test2 = Optional.ofNullable(p.getCar());
-            System.out.println(test2.orElse(null));
-        }
-
-        System.out.println(parking.getFreeSpaceSmallCar());
-        System.out.println(parking.getFreeSpaceBigCar());
-    }
+//    public static void main(String[] args) {
+//        Parking parking = new NewParking(10, 5);
+//        System.out.println(parking.getAllSmallCars().size());
+//        System.out.println(parking.getAllBigCars().size());
+//
+//        Car passengerCar = new PassengerCar();
+//        Car cargoCar = new CargoCar(3);
+//
+//        parking.getAllSmallCars().set(0, new Place(1, true, passengerCar));
+//        parking.getAllSmallCars().set(1, new Place(2, true, cargoCar));
+//        parking.getAllSmallCars().set(2, new Place(3, true, passengerCar));
+//        parking.getAllBigCars().set(0, new Place(1, true, cargoCar));
+//
+//        for (Place p : parking.getAllSmallCars()) {
+//            Optional<Car> test1 = Optional.ofNullable(p.getCar());
+//            System.out.println(test1.orElse(null));
+//        }
+//
+//        System.out.println(System.lineSeparator());
+//
+//        for (Place p : parking.getAllBigCars()) {
+//            Optional<Car> test2 = Optional.ofNullable(p.getCar());
+//            System.out.println(test2.orElse(null));
+//        }
+//
+//        System.out.println(parking.getFreeSpaceSmallCar());
+//        System.out.println(parking.getFreeSpaceBigCar());
+//
+//        System.out.println(System.lineSeparator());
+//
+//        parking.park(new PassengerCar());
+//        parking.park(new CargoCar(3));
+//
+//        for (Place p : parking.getAllSmallCars()) {
+//            Optional<Car> test1 = Optional.ofNullable(p.getCar());
+//            System.out.println(test1.orElse(null));
+//        }
+//
+//        System.out.println(System.lineSeparator());
+//
+//        for (Place p : parking.getAllBigCars()) {
+//            Optional<Car> test2 = Optional.ofNullable(p.getCar());
+//            System.out.println(test2.orElse(null));
+//        }
+//
+//        System.out.println(parking.getFreeSpaceSmallCar());
+//        System.out.println(parking.getFreeSpaceBigCar());
+//    }
 }
