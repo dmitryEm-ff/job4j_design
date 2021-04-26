@@ -59,7 +59,7 @@ public class NewParking implements Parking {
         } else {
             tmp = spaceFinderLogic(bigCarsArray);
             if (tmp == null) {
-
+                smallCarsArray.stream().
             }
         }
         return tmp;
