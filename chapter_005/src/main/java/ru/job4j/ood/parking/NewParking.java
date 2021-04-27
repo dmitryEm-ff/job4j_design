@@ -36,14 +36,11 @@ public class NewParking implements Parking {
     @Override
     public boolean park(Car car) {
         Place place = freeSpaceFinder(car);
-        if (place != null) {
-            for (int i = 0; i < car.getSize(); i++) {
-                place.setStatus(true);
-                place.setCar(car);
-            }
-            return true;
+        if (place == null) {
+            return false;
         }
-        return false;
+
+        return true;
     }
 
     /**
