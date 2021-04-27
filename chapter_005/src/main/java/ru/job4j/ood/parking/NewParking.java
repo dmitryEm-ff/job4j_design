@@ -1,6 +1,7 @@
 package ru.job4j.ood.parking;
 
 import java.util.*;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -36,11 +37,17 @@ public class NewParking implements Parking {
     @Override
     public boolean park(Car car) {
         Place place = freeSpaceFinder(car);
-        if (place == null) {
-            return false;
+        if (place != null) {
+            place.setStatus(true);
+            place.setCar(car);
+            return true;
+        } else if (car.getSize() > 1) {
+            place = findSpaceForBigCarsInSmallArray(car);
+            for (int i = 0; i < car.getSize(); i++) {
+                smallCarsArray.indexOf(place)
+            }
         }
-
-        return true;
+        return false;
     }
 
     /**
@@ -52,39 +59,33 @@ public class NewParking implements Parking {
     public Place freeSpaceFinder(Car car) {
         Place tmp = null;
         if (car.getSize() == 1) {
-            tmp = spaceFinderLogic(smallCarsArray);
+            tmp = smallCarsArray.stream()
+                    .filter(place -> !place.isStatus())
+                    .findFirst()
+                    .get();
         } else {
-            tmp = spaceFinderLogic(bigCarsArray);
-            if (tmp == null) {
-                int counter = 0;
-                for (Place p : smallCarsArray) {
-                    if (!p.isStatus()) {
-                        counter++;
-                    } else {
-                        counter = 0;
-                    }
-                    if (counter == car.getSize()) {
-                        tmp = p;
-                    }
-                }
-            }
+            tmp = bigCarsArray.stream()
+                    .filter(place -> !place.isStatus())
+                    .findFirst()
+                    .get();
         }
         return tmp;
     }
 
-    /**
-     * Method implements freeSpaceFinder() method
-     *
-     * @param list
-     * @return place
-     */
-
-    public Place spaceFinderLogic(List<Place> list) {
+    public Place findSpaceForBigCarsInSmallArray(Car car) {
         Place tmp = null;
-        tmp = list.stream()
-                .filter(place -> !place.isStatus())
-                .findFirst()
-                .get();
+        int counter = 0;
+        for (Place p : smallCarsArray) {
+            if (!p.isStatus()) {
+                counter++;
+            } else {
+                counter = 0;
+            }
+            if (counter == car.getSize()) {
+                tmp = smallCarsArray.get(smallCarsArray.indexOf(p) - counter - 1);
+                return tmp;
+            }
+        }
         return tmp;
     }
 
