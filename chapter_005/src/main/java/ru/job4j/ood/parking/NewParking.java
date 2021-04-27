@@ -59,7 +59,17 @@ public class NewParking implements Parking {
         } else {
             tmp = spaceFinderLogic(bigCarsArray);
             if (tmp == null) {
-                smallCarsArray.stream().
+                int counter = 0;
+                for (Place p : smallCarsArray) {
+                    if (!p.isStatus()) {
+                        counter++;
+                    } else {
+                        counter = 0;
+                    }
+                    if (counter == car.getSize()) {
+                        tmp = p;
+                    }
+                }
             }
         }
         return tmp;
