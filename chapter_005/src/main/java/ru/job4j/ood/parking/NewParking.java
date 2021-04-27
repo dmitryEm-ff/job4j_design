@@ -36,16 +36,16 @@ public class NewParking implements Parking {
      */
     @Override
     public boolean park(Car car) {
-        Place place = freeSpaceFinder(car);
-        if (place != null) {
-            place.setStatus(true);
-            place.setCar(car);
+        Place firstCheck = freeSpaceFinder(car);
+        if (firstCheck != null) {
+            firstCheck.setStatus(true);
+            firstCheck.setCar(car);
             return true;
         } else if (car.getSize() > 1) {
-            place = findSpaceForBigCarsInSmallArray(car);
-            if (place != null) {
+            Place secondCheck = findSpaceForBigCarsInSmallArray(car);
+            if (secondCheck != null) {
                 for (int i = 0; i < car.getSize(); i++) {
-                    Place tmp = smallCarsArray.get(smallCarsArray.indexOf(place) + i);
+                    Place tmp = smallCarsArray.get(smallCarsArray.indexOf(secondCheck) + i);
                     tmp.setStatus(true);
                     tmp.setCar(car);
                 }
@@ -175,6 +175,11 @@ public class NewParking implements Parking {
 //        parking.getAllBigCars().set(0, new Place(1, true, cargoCar));
 
         parking.park(cargoCar);
+        parking.park(cargoCar);
+        parking.park(cargoCar);
+        parking.park(cargoCar);
+        parking.park(cargoCar);
+        parking.park(cargoCar);
 
         for (Place p : parking.getAllSmallCars()) {
             Optional<Car> test1 = Optional.ofNullable(p.getCar());
@@ -187,11 +192,11 @@ public class NewParking implements Parking {
             Optional<Car> test2 = Optional.ofNullable(p.getCar());
             System.out.println(test2.orElse(null));
         }
-
-        System.out.println(parking.getFreeSpaceSmallCar());
-        System.out.println(parking.getFreeSpaceBigCar());
-
-        System.out.println(System.lineSeparator());
+//
+//        System.out.println(parking.getFreeSpaceSmallCar());
+//        System.out.println(parking.getFreeSpaceBigCar());
+//
+//        System.out.println(System.lineSeparator());
 //
 //        parking.park(new PassengerCar());
 //        parking.park(new CargoCar(3));
