@@ -43,8 +43,13 @@ public class NewParking implements Parking {
             return true;
         } else if (car.getSize() > 1) {
             place = findSpaceForBigCarsInSmallArray(car);
-            for (int i = 0; i < car.getSize(); i++) {
-                smallCarsArray.indexOf(place)
+            if (place != null) {
+                for (int i = 0; i < car.getSize(); i++) {
+                    Place tmp = smallCarsArray.get(smallCarsArray.indexOf(place) + i);
+                    tmp.setStatus(true);
+                    tmp.setCar(car);
+                }
+                return true;
             }
         }
         return false;
@@ -72,6 +77,12 @@ public class NewParking implements Parking {
         return tmp;
     }
 
+    /**
+     * Method looks for free space in the smallCarsArray
+     *
+     * @param car
+     * @return place
+     */
     public Place findSpaceForBigCarsInSmallArray(Car car) {
         Place tmp = null;
         int counter = 0;
