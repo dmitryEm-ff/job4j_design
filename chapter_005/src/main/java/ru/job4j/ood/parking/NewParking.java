@@ -1,7 +1,6 @@
 package ru.job4j.ood.parking;
 
 import java.util.*;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -36,16 +35,16 @@ public class NewParking implements Parking {
      */
     @Override
     public boolean park(Car car) {
-        Place firstCheck = freeSpaceFinder(car);
-        if (firstCheck != null) {
-            firstCheck.setStatus(true);
-            firstCheck.setCar(car);
+        Optional<Place> firstCheck = freeSpaceFinder(car);
+        if (firstCheck.isPresent()) {
+            firstCheck.get().setStatus(true);
+            firstCheck.get().setCar(car);
             return true;
         } else if (car.getSize() > 1) {
-            Place secondCheck = findSpaceForBigCarsInSmallArray(car);
-            if (secondCheck != null) {
+            Optional<Place> secondCheck = findSpaceForBigCarsInSmallArray(car);
+            if (secondCheck.isPresent()) {
                 for (int i = 0; i < car.getSize(); i++) {
-                    Place tmp = smallCarsArray.get(smallCarsArray.indexOf(secondCheck) + i);
+                    Place tmp = smallCarsArray.get(smallCarsArray.indexOf(secondCheck.get()) + i);
                     tmp.setStatus(true);
                     tmp.setCar(car);
                 }
@@ -61,18 +60,16 @@ public class NewParking implements Parking {
      * @param car
      * @return place
      */
-    public Place freeSpaceFinder(Car car) {
-        Place tmp = null;
+    public Optional<Place> freeSpaceFinder(Car car) {
+        Optional<Place> tmp = Optional.empty();
         if (car.getSize() == 1) {
-            tmp = smallCarsArray.stream()
+            tmp = Optional.of(smallCarsArray.stream()
                     .filter(place -> !place.isStatus())
-                    .findFirst()
-                    .get();
+                    .findFirst()).get();
         } else {
-            tmp = bigCarsArray.stream()
+            tmp = Optional.of(bigCarsArray.stream()
                     .filter(place -> !place.isStatus())
-                    .findFirst()
-                    .get();
+                    .findFirst()).get();
         }
         return tmp;
     }
@@ -83,8 +80,8 @@ public class NewParking implements Parking {
      * @param car
      * @return place
      */
-    public Place findSpaceForBigCarsInSmallArray(Car car) {
-        Place tmp = null;
+    public Optional<Place> findSpaceForBigCarsInSmallArray(Car car) {
+        Optional<Place> tmp = Optional.empty();
         int counter = 0;
         for (Place p : smallCarsArray) {
             if (!p.isStatus()) {
@@ -93,7 +90,7 @@ public class NewParking implements Parking {
                 counter = 0;
             }
             if (counter == car.getSize()) {
-                tmp = smallCarsArray.get(smallCarsArray.indexOf(p) - counter - 1);
+                tmp = Optional.ofNullable(smallCarsArray.get(smallCarsArray.indexOf(p) - (car.getSize() - 1)));
                 return tmp;
             }
         }
@@ -180,6 +177,7 @@ public class NewParking implements Parking {
         parking.park(cargoCar);
         parking.park(cargoCar);
         parking.park(cargoCar);
+        parking.park(cargoCar);
 
         for (Place p : parking.getAllSmallCars()) {
             Optional<Car> test1 = Optional.ofNullable(p.getCar());
@@ -201,10 +199,12 @@ public class NewParking implements Parking {
 //        parking.park(new PassengerCar());
 //        parking.park(new CargoCar(3));
 //
-        for (Place p : parking.getAllSmallCars()) {
-            Optional<Car> test1 = Optional.ofNullable(p.getCar());
-            System.out.println(test1.orElse(null));
-        }
+//        System.out.println(System.lineSeparator());
+//
+//        for (Place p : parking.getAllSmallCars()) {
+//            Optional<Car> test1 = Optional.ofNullable(p.getCar());
+//            System.out.println(test1.orElse(null));
+//        }
 //
 //        System.out.println(System.lineSeparator());
 //
