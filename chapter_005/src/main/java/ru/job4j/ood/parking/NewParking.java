@@ -124,10 +124,10 @@ public class NewParking implements Parking {
      */
     @Override
     public int getFreeSpaceBigCar() {
-        int rsl = (int) Stream.of(smallCarsArray, bigCarsArray)
-                .flatMap(Collection::stream)
+        int rsl = (int) bigCarsArray.stream()
                 .filter(y -> !y.isStatus())
                 .count();
+        rsl += getFreeSpaceSmallCar() / 3;
         return rsl;
     }
 
@@ -156,64 +156,5 @@ public class NewParking implements Parking {
             rsl.add(new Place(i + 1, false));
         }
         return rsl;
-    }
-
-    public static void main(String[] args) {
-        Parking parking = new NewParking(10, 5);
-        System.out.println(parking.getAllSmallCars().size());
-        System.out.println(parking.getAllBigCars().size());
-
-        Car passengerCar = new PassengerCar();
-        Car cargoCar = new CargoCar(3);
-
-//        parking.getAllSmallCars().set(0, new Place(1, true, passengerCar));
-//        parking.getAllSmallCars().set(1, new Place(2, true, cargoCar));
-//        parking.getAllSmallCars().set(2, new Place(3, true, passengerCar));
-//        parking.getAllBigCars().set(0, new Place(1, true, cargoCar));
-
-        parking.park(cargoCar);
-        parking.park(cargoCar);
-        parking.park(cargoCar);
-        parking.park(cargoCar);
-        parking.park(cargoCar);
-        parking.park(cargoCar);
-        parking.park(cargoCar);
-
-        for (Place p : parking.getAllSmallCars()) {
-            Optional<Car> test1 = Optional.ofNullable(p.getCar());
-            System.out.println(test1.orElse(null));
-        }
-
-        System.out.println(System.lineSeparator());
-
-        for (Place p : parking.getAllBigCars()) {
-            Optional<Car> test2 = Optional.ofNullable(p.getCar());
-            System.out.println(test2.orElse(null));
-        }
-//
-//        System.out.println(parking.getFreeSpaceSmallCar());
-//        System.out.println(parking.getFreeSpaceBigCar());
-//
-//        System.out.println(System.lineSeparator());
-//
-//        parking.park(new PassengerCar());
-//        parking.park(new CargoCar(3));
-//
-//        System.out.println(System.lineSeparator());
-//
-//        for (Place p : parking.getAllSmallCars()) {
-//            Optional<Car> test1 = Optional.ofNullable(p.getCar());
-//            System.out.println(test1.orElse(null));
-//        }
-//
-//        System.out.println(System.lineSeparator());
-//
-//        for (Place p : parking.getAllBigCars()) {
-//            Optional<Car> test2 = Optional.ofNullable(p.getCar());
-//            System.out.println(test2.orElse(null));
-//        }
-//
-//        System.out.println(parking.getFreeSpaceSmallCar());
-//        System.out.println(parking.getFreeSpaceBigCar());
     }
 }
