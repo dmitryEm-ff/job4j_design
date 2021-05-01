@@ -1,7 +1,6 @@
-package ru.job4j.ood.parking;
+package ru.job4j.ood.lsp.parking;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 /**
  * Parking realisation

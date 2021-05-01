@@ -1,4 +1,4 @@
-package ru.job4j.ood.parking;
+package ru.job4j.ood.lsp.parking;
 
 /**
  * Class of cargo cars

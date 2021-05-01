@@ -1,13 +1,9 @@
-package ru.job4j.ood.parking;
+package ru.job4j.ood.lsp.parking;
 
 import org.junit.Test;
 
-import java.util.List;
-
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
-
-import static org.junit.Assert.*;
 
 public class NewParkingTest {
 
