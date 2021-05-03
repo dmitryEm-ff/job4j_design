@@ -4,10 +4,16 @@ import ru.job4j.ood.isp.MenuItem;
 import ru.job4j.ood.isp.UserAction;
 
 public class TaskTwo implements MenuItem {
+    private String title;
     private UserAction userAction;
 
-    public TaskTwo(UserAction userAction) {
+    public TaskTwo(String title, UserAction userAction) {
+        this.title = title;
         this.userAction = userAction;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public UserAction getUserAction() {
