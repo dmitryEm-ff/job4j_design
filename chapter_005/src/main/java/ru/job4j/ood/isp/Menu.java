@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface Menu {
     void init(List<MenuItem> menuItems);
-    void showMenu(List<MenuItem> menuItems);
+    List<MenuItem> showMenu(List<MenuItem> menuItems);
 }
