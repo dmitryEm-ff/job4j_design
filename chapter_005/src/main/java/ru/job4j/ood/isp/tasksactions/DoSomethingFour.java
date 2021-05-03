@@ -1,6 +1,8 @@
-package ru.job4j.ood.isp;
+package ru.job4j.ood.isp.tasksactions;
 
-public class DoSomethingTwo implements UserAction {
+import ru.job4j.ood.isp.UserAction;
+
+public class DoSomethingFour implements UserAction {
     @Override
     public String name() {
         return null;
