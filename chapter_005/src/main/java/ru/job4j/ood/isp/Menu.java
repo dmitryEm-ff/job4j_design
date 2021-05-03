@@ -1,4 +1,4 @@
 package ru.job4j.ood.isp;
 
-public class StartUI {
+public interface Menu {
 }
