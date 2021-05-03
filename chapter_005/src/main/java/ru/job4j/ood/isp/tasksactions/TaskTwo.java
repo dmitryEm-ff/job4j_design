@@ -1,9 +1,9 @@
 package ru.job4j.ood.isp.tasksactions;
 
-import ru.job4j.ood.isp.MenuItem;
+import ru.job4j.ood.isp.Task;
 import ru.job4j.ood.isp.UserAction;
 
-public class TaskTwo implements MenuItem {
+public class TaskTwo implements Task {
     private String title;
     private UserAction userAction;
 

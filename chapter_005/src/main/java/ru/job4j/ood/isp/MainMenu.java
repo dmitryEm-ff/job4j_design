@@ -4,15 +4,15 @@ import java.util.List;
 
 public class MainMenu implements Menu {
     private String title;
-    private List<MenuItem> menuItems;
+    private List<Task> menuItems;
 
-    public MainMenu(String title, List<MenuItem> menuItems) {
+    public MainMenu(String title, List<Task> menuItems) {
         this.title = title;
         this.menuItems = menuItems;
     }
 
     @Override
-    public void showMenu(List<MenuItem> menuItems) {
+    public void showMenu(List<Task> menuItems) {
 
     }
 }
