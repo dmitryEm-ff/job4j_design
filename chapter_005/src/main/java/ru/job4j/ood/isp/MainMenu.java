@@ -34,19 +34,21 @@ public class MainMenu implements Menu {
             MenuItem tmp = menuItems.get(i);
             rsl.add(tmp);
             System.out.println(i + " --" + tmp.getTitle());
-            check(rsl, tmp);
+            rsl = check(rsl, tmp);
         }
         return rsl;
     }
 
-    public void check(List<MenuItem> rsl, MenuItem menuItem) {
+    public List<MenuItem> check(List<MenuItem> rsl, MenuItem menuItem) {
         if (menuItem.getChildren().size() != 0) {
             for (int i = 0; i < menuItem.getChildren().size(); i++) {
                 MenuItem tmp = menuItem.getChildren().get(i);
                 rsl.add(tmp);
                 System.out.println(i + " --" + tmp.getTitle());
                 check(rsl, tmp);
+                rsl = check(rsl, tmp);
             }
         }
+        return rsl;
     }
 }
