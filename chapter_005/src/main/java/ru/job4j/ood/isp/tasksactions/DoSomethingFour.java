@@ -5,7 +5,7 @@ import ru.job4j.ood.isp.UserAction;
 public class DoSomethingFour implements UserAction {
     @Override
     public String name() {
-        return null;
+        return "Action";
     }
 
     @Override
