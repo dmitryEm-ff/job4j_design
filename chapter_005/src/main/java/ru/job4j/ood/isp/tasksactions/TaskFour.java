@@ -10,10 +10,21 @@ public class TaskFour implements MenuItem {
     private String title;
     private UserAction userAction;
     private List<MenuItem> children = new ArrayList<>();
+    private int number = 0;
 
     public TaskFour(String title, UserAction userAction) {
         this.title = title;
         this.userAction = userAction;
+    }
+
+    @Override
+    public int getNumber() {
+        return number;
+    }
+
+    @Override
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     @Override
@@ -28,6 +39,7 @@ public class TaskFour implements MenuItem {
 
     @Override
     public void setChildren(MenuItem children) {
+        children.setNumber(children.getNumber() + 1);
         this.children.add(children);
     }
 

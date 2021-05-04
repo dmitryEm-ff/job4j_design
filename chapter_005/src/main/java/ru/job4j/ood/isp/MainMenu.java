@@ -35,20 +35,22 @@ public class MainMenu implements Menu {
         for (int i = 0; i < menuItems.size(); i++) {
             MenuItem tmp = menuItems.get(i);
             rsl.add(tmp);
-            System.out.println(i + 1 + " --" + tmp.getTitle());
-            rsl = check(rsl, tmp);
+            int num = tmp.getNumber() + 1 + i;
+            System.out.println(num + tmp.getTitle());
+            rsl = check(rsl, tmp, num);
         }
         return rsl;
     }
 
-    public List<MenuItem> check(List<MenuItem> rsl, MenuItem menuItem) {
+    public List<MenuItem> check(List<MenuItem> rsl, MenuItem menuItem, int num) {
         if (menuItem.getChildren().size() != 0) {
             for (int i = 0; i < menuItem.getChildren().size(); i++) {
                 MenuItem tmp = menuItem.getChildren().get(i);
                 rsl.add(tmp);
-                System.out.println(i + 1 + " --" + tmp.getTitle());
-                check(rsl, tmp);
-                rsl = check(rsl, tmp);
+                int number = tmp.getNumber() + i;
+                System.out.print("--");
+                System.out.println(num + "." + number + tmp.getTitle());
+                check(rsl, tmp, number);
             }
         }
         return rsl;
@@ -63,6 +65,8 @@ public class MainMenu implements Menu {
                 );
         menuItems.get(1).setChildren(new TaskOne("Task One", new DoSomethingOne()));
         menuItems.get(1).setChildren(new TaskTwo("Task Two", new DoSomethingTwo()));
+        menuItems.get(1).getChildren().get(1).setChildren(new TaskOne("Task One", new DoSomethingOne()));
+        menuItems.get(1).getChildren().get(1).setChildren(new TaskTwo("Task Two", new DoSomethingTwo()));
         Menu menu = new MainMenu("Main Menu", menuItems);
         menu.init();
     }

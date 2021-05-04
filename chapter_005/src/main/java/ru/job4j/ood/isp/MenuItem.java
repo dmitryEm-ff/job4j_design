@@ -7,4 +7,6 @@ public interface MenuItem {
     UserAction getUserAction();
     void setChildren(MenuItem children);
     List<MenuItem> getChildren();
+    int getNumber();
+    void setNumber(int number);
 }
