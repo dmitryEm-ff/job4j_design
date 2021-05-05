@@ -31,27 +31,29 @@ public class MainMenu implements Menu {
     @Override
     public List<MenuItem> showMenu(List<MenuItem> menuItems) {
         List<MenuItem> rsl = new ArrayList<>();
-        int num;
+        int num = 1;
         System.out.println(title);
         for (int index = 0; index < menuItems.size(); index++) {
-            MenuItem tmp = menuItems.get(index);
-            num = tmp.getNumber() + index + 1;
-            rsl.add(tmp);
-            System.out.println(num + " " + tmp.getTitle());
-            check(rsl, num);
+            check(rsl, menuItems.get(index), index);
+//            MenuItem tmp = menuItems.get(index);
+//            num = tmp.getNumber() + index + 1;
+//            rsl.add(tmp);
+//            System.out.println(num + " " + tmp.getTitle());
+//            if (tmp.getChildren().size() != 0) {
+//                check(rsl, tmp, num);
+//            }
         }
         return rsl;
     }
 
-    public List<MenuItem> check(List<MenuItem> rsl, int num) {
-//            for (int i = 0; i < menuItem.getChildren().size(); i++) {
-//                MenuItem tmp = menuItem.getChildren().get(i);
-//                rsl.add(tmp);
-//                int number = tmp.getNumber() + i;
-//                System.out.print("--");
-//                System.out.println(num + "." + number + tmp.getTitle());
-//                check(rsl, tmp, number);
-//            }
+    public List<MenuItem> check(List<MenuItem> rsl, MenuItem tmp, int index) {
+        rsl.add(tmp);
+        System.out.println((tmp.getNumber() + index) + " " + tmp.getTitle());
+        if (tmp.getChildren().size() != 0) {
+            for (int i = 0; i < tmp.getChildren().size(); i++) {
+                check(rsl, tmp.getChildren().get(i), i);
+            }
+        }
         return rsl;
     }
 

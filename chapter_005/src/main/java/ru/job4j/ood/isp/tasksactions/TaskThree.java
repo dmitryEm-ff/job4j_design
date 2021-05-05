@@ -10,7 +10,7 @@ public class TaskThree implements MenuItem {
     private String title;
     private UserAction userAction;
     private List<MenuItem> children = new ArrayList<>();
-    private int number = 0;
+    private int number = 1;
 
     public TaskThree(String title, UserAction userAction) {
         this.title = title;
@@ -39,7 +39,6 @@ public class TaskThree implements MenuItem {
 
     @Override
     public void setChildren(MenuItem children) {
-        children.setNumber(children.getNumber() + 1);
         this.children.add(children);
     }
 
