@@ -31,28 +31,27 @@ public class MainMenu implements Menu {
     @Override
     public List<MenuItem> showMenu(List<MenuItem> menuItems) {
         List<MenuItem> rsl = new ArrayList<>();
+        int num;
         System.out.println(title);
-        for (int i = 0; i < menuItems.size(); i++) {
-            MenuItem tmp = menuItems.get(i);
+        for (int index = 0; index < menuItems.size(); index++) {
+            MenuItem tmp = menuItems.get(index);
+            num = tmp.getNumber() + index + 1;
             rsl.add(tmp);
-            int num = tmp.getNumber() + 1 + i;
-            System.out.println(num + tmp.getTitle());
-            rsl = check(rsl, tmp, num);
+            System.out.println(num + " " + tmp.getTitle());
+            check(rsl, num);
         }
         return rsl;
     }
 
-    public List<MenuItem> check(List<MenuItem> rsl, MenuItem menuItem, int num) {
-        if (menuItem.getChildren().size() != 0) {
-            for (int i = 0; i < menuItem.getChildren().size(); i++) {
-                MenuItem tmp = menuItem.getChildren().get(i);
-                rsl.add(tmp);
-                int number = tmp.getNumber() + i;
-                System.out.print("--");
-                System.out.println(num + "." + number + tmp.getTitle());
-                check(rsl, tmp, number);
-            }
-        }
+    public List<MenuItem> check(List<MenuItem> rsl, int num) {
+//            for (int i = 0; i < menuItem.getChildren().size(); i++) {
+//                MenuItem tmp = menuItem.getChildren().get(i);
+//                rsl.add(tmp);
+//                int number = tmp.getNumber() + i;
+//                System.out.print("--");
+//                System.out.println(num + "." + number + tmp.getTitle());
+//                check(rsl, tmp, number);
+//            }
         return rsl;
     }
 
