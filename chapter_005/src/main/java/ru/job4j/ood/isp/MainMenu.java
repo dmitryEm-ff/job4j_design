@@ -35,20 +35,15 @@ public class MainMenu implements Menu {
         System.out.println(title);
         for (int index = 0; index < menuItems.size(); index++) {
             check(rsl, menuItems.get(index), index);
-//            MenuItem tmp = menuItems.get(index);
-//            num = tmp.getNumber() + index + 1;
-//            rsl.add(tmp);
-//            System.out.println(num + " " + tmp.getTitle());
-//            if (tmp.getChildren().size() != 0) {
-//                check(rsl, tmp, num);
-//            }
         }
         return rsl;
     }
 
     public List<MenuItem> check(List<MenuItem> rsl, MenuItem tmp, int index) {
         rsl.add(tmp);
-        System.out.println((tmp.getNumber() + index) + " " + tmp.getTitle());
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append((tmp.getNumber() + index));
+        System.out.println(stringBuilder + " " + tmp.getTitle());
         if (tmp.getChildren().size() != 0) {
             for (int i = 0; i < tmp.getChildren().size(); i++) {
                 check(rsl, tmp.getChildren().get(i), i);
