@@ -32,22 +32,24 @@ public class MainMenu implements Menu {
     public List<MenuItem> showMenu(List<MenuItem> menuItems) {
         List<MenuItem> rsl = new ArrayList<>();
         int num = 0;
+        StringBuilder stringBuilder = new StringBuilder();
         System.out.println(title);
         for (int index = 0; index < menuItems.size(); index++) {
-            check(rsl, menuItems.get(index), index);
+            check(rsl, menuItems.get(index), index, stringBuilder);
         }
         return rsl;
     }
 
-    public List<MenuItem> check(List<MenuItem> rsl, MenuItem tmp, int index) {
+    public List<MenuItem> check(List<MenuItem> rsl, MenuItem tmp, int index, StringBuilder stringBuilder) {
         rsl.add(tmp);
         tmp.setNumber((tmp.getNumber() + index));
-        StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(tmp.getNumber());
         System.out.println(stringBuilder + " " + tmp.getTitle());
-        if (tmp.getChildren().size() != 0) {
+        if (tmp.getChildren().size() == 0) {
+            stringBuilder.setLength(0);
+        } else {
             for (int i = 0; i < tmp.getChildren().size(); i++) {
-                check(rsl, tmp.getChildren().get(i), i);
+                check(rsl, tmp.getChildren().get(i), i, stringBuilder);
             }
         }
         return rsl;
