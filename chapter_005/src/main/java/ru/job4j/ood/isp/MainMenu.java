@@ -31,7 +31,7 @@ public class MainMenu implements Menu {
     @Override
     public List<MenuItem> showMenu(List<MenuItem> menuItems) {
         List<MenuItem> rsl = new ArrayList<>();
-        int num = 1;
+        int num = 0;
         System.out.println(title);
         for (int index = 0; index < menuItems.size(); index++) {
             check(rsl, menuItems.get(index), index);
@@ -41,8 +41,9 @@ public class MainMenu implements Menu {
 
     public List<MenuItem> check(List<MenuItem> rsl, MenuItem tmp, int index) {
         rsl.add(tmp);
+        tmp.setNumber((tmp.getNumber() + index));
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append((tmp.getNumber() + index));
+        stringBuilder.append(tmp.getNumber());
         System.out.println(stringBuilder + " " + tmp.getTitle());
         if (tmp.getChildren().size() != 0) {
             for (int i = 0; i < tmp.getChildren().size(); i++) {
