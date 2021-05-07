@@ -49,6 +49,7 @@ public class MainMenu implements Menu {
             stringBuilder.setLength(0);
         } else {
             for (int i = 0; i < tmp.getChildren().size(); i++) {
+                stringBuilder.append(".");
                 check(rsl, tmp.getChildren().get(i), i, stringBuilder);
             }
         }
