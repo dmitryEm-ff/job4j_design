@@ -36,6 +36,7 @@ public class MainMenu implements Menu {
         System.out.println(title);
         for (int index = 0; index < menuItems.size(); index++) {
             check(rsl, menuItems.get(index), index, stringBuilder);
+            stringBuilder.setLength(0);
         }
         return rsl;
     }
@@ -44,13 +45,13 @@ public class MainMenu implements Menu {
         rsl.add(tmp);
         tmp.setNumber((tmp.getNumber() + index));
         stringBuilder.append(tmp.getNumber());
-        System.out.println(stringBuilder + " " + tmp.getTitle());
-        if (tmp.getChildren().size() == 0) {
-            stringBuilder.setLength(0);
-        } else {
+        System.out.println(rsl.size() + ".  " + stringBuilder + " " + tmp.getTitle());
+        if (tmp.getChildren().size() != 0) {
+            stringBuilder.insert(0, "--");
             for (int i = 0; i < tmp.getChildren().size(); i++) {
                 stringBuilder.append(".");
                 check(rsl, tmp.getChildren().get(i), i, stringBuilder);
+                stringBuilder.setLength(stringBuilder.length() - (1 + String.valueOf(i).length()));
             }
         }
         return rsl;
