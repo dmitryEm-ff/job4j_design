@@ -6,9 +6,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Menu realisation
+ *
+ * @author Emelyanov Dmitry
+ * @version 1.0
+ * @since 07.05.21
+ */
+
 public class MainMenu implements Menu {
+
+    /**
+     * Main menu title
+     */
     private String title;
+
+    /**
+     * Menu items list
+     */
     private List<MenuItem> menuItems;
+
+    /**
+     * User input
+     */
     private Scanner scanner = new Scanner(System.in);
 
     public MainMenu(String title, List<MenuItem> menuItems) {
@@ -16,6 +36,9 @@ public class MainMenu implements Menu {
         this.menuItems = menuItems;
     }
 
+    /**
+     * Menu display loop
+     */
     @Override
     public void init() {
         boolean run = true;
@@ -28,6 +51,12 @@ public class MainMenu implements Menu {
         }
     }
 
+    /**
+     *Displays the title of main menu and checks all items
+     *
+     * @param menuItems
+     * @return list with all menu items and their children
+     */
     @Override
     public List<MenuItem> showMenu(List<MenuItem> menuItems) {
         List<MenuItem> rsl = new ArrayList<>();
@@ -41,6 +70,15 @@ public class MainMenu implements Menu {
         return rsl;
     }
 
+    /**
+     * Checking each menu item and printing its number
+     *
+     * @param rsl list with current elements
+     * @param tmp current menu item
+     * @param index index of the item in the list
+     * @param stringBuilder
+     * @return list with result
+     */
     public List<MenuItem> check(List<MenuItem> rsl, MenuItem tmp, int index, StringBuilder stringBuilder) {
         rsl.add(tmp);
         tmp.setNumber((tmp.getNumber() + index));
