@@ -23,4 +23,6 @@ public interface Menu {
      * @return list
      */
     List<MenuItem> showMenu(List<MenuItem> menuItems);
+
+    boolean addChildren(String parentName, MenuItem child, List<MenuItem> list);
 }

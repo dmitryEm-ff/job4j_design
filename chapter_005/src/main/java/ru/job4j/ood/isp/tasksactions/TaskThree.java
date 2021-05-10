@@ -60,10 +60,10 @@ public class TaskThree implements MenuItem {
         return userAction;
     }
 
-    @Override
-    public void setChildren(MenuItem children) {
-        this.children.add(children);
-    }
+//    @Override
+//    public void setChildren(MenuItem children) {
+//        this.children.add(children);
+//    }
 
     @Override
     public List<MenuItem> getChildren() {

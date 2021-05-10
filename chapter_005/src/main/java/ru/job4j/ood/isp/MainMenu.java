@@ -95,6 +95,19 @@ public class MainMenu implements Menu {
         return rsl;
     }
 
+    @Override
+    public boolean addChildren(String parentName, MenuItem child, List<MenuItem> list) {
+        for (MenuItem mi : list) {
+            if (mi.getTitle().equals(parentName)) {
+                mi.getChildren().add(child);
+                return true;
+            } else {
+                addChildren(parentName, child, mi.getChildren());
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         List<MenuItem> menuItems = List.of(
                 new TaskOne("Task One", new DoSomethingOne()),
@@ -102,11 +115,18 @@ public class MainMenu implements Menu {
                 new TaskThree("Task Three", new DoSomethingThree()),
                 new TaskFour("Task Four", new DoSomethingFour())
                 );
-        menuItems.get(1).setChildren(new TaskOne("Task One", new DoSomethingOne()));
-        menuItems.get(1).setChildren(new TaskTwo("Task Two", new DoSomethingTwo()));
-        menuItems.get(1).getChildren().get(1).setChildren(new TaskOne("Task One", new DoSomethingOne()));
-        menuItems.get(1).getChildren().get(1).setChildren(new TaskTwo("Task Two", new DoSomethingTwo()));
+//        menuItems.get(1).setChildren(new TaskOne("Task One", new DoSomethingOne()));
+//        menuItems.get(1).setChildren(new TaskTwo("Task Two", new DoSomethingTwo()));
+//        menuItems.get(1).getChildren().get(1).setChildren(new TaskOne("Task One", new DoSomethingOne()));
+//        menuItems.get(1).getChildren().get(1).setChildren(new TaskTwo("Task Two", new DoSomethingTwo()));
+
         Menu menu = new MainMenu("Main Menu", menuItems);
+
+        menu.addChildren("Task Two", new TaskOne("Task Two One", new DoSomethingOne()), menuItems);
+        menu.addChildren("Task Two", new TaskTwo("Task Two Two", new DoSomethingTwo()), menuItems);
+        menu.addChildren("Task Two Two", new TaskTwo("Task Two Two One", new DoSomethingTwo()), menuItems);
+        menu.addChildren("Task Two Two", new TaskTwo("Task Two Two Two", new DoSomethingTwo()), menuItems);
+
         menu.init();
     }
 }
