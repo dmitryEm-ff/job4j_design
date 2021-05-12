@@ -1,7 +1,5 @@
 package ru.job4j.ood.dip;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,6 +27,8 @@ public class ControlQuality implements Control {
         List<Food> mainList = storageMap.stream()
                 .flatMap(storage -> storage.getAll().stream())
                 .collect(Collectors.toList());
+
+        storageMap.forEach(storage -> storage.getAll().clear());
 
         mainList.forEach(this::applyQualityControl);
     }
