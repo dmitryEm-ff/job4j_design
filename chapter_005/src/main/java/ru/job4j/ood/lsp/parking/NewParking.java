@@ -126,7 +126,7 @@ public class NewParking implements Parking {
         int rsl = (int) bigCarsArray.stream()
                 .filter(y -> !y.isStatus())
                 .count();
-        rsl += getFreeSpaceSmallCar() / 3;
+        rsl += getFreeSpaceSmallCar() / 4;
         return rsl;
     }
 
