@@ -18,7 +18,7 @@ public class NewParkingTest {
     public void whenParkingCargoCar() {
         Parking parking = new NewParking(10, 5);
         parking.park(new CargoCar(4));
-        assertThat(parking.getFreeSpaceBigCar(), is(4));
+        assertThat(parking.getFreeSpaceBigCar(), is(7));
     }
 
     @Test
@@ -26,7 +26,7 @@ public class NewParkingTest {
         Parking parking = new NewParking(10, 1);
         parking.park(new CargoCar(4));
         parking.park(new CargoCar(4));
-        assertThat(parking.getFreeSpaceBigCar(), is(0));
+        assertThat(parking.getFreeSpaceBigCar(), is(2));
         assertThat(parking.getFreeSpaceSmallCar(), is(6));
     }
 
@@ -42,7 +42,7 @@ public class NewParkingTest {
         Parking parking = new NewParking(10, 5);
         parking.park(new CargoCar(4));
         parking.park(new CargoCar(4));
-        assertThat(parking.getFreeSpaceBigCar(), is(7));
+        assertThat(parking.getFreeSpaceBigCar(), is(6));
     }
 
     @Test
