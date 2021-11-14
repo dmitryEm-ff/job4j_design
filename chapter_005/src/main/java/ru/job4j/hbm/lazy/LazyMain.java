@@ -18,15 +18,6 @@ public class LazyMain {
             Session session = sf.openSession();
             session.beginTransaction();
 
-            Brand brand1 = Brand.of("brand1");
-            Auto auto1 = Auto.of("auto1", brand1);
-            Auto auto2 = Auto.of("auto2", brand1);
-            Auto auto3 = Auto.of("auto3", brand1);
-            session.persist(brand1);
-            session.persist(auto1);
-            session.persist(auto2);
-            session.persist(auto3);
-
             list = session.createQuery("select distinct b from Brand b join fetch b.autos").list();
             session.getTransaction().commit();
             session.close();

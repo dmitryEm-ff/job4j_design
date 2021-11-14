@@ -20,8 +20,12 @@
 <!--        <mapping class="ru.job4j.hbm.Car" />-->
 <!--        <mapping class="ru.job4j.hbm.manytomany.Autor" />-->
 <!--        <mapping class="ru.job4j.hbm.manytomany.Book" />-->
-        <mapping class="ru.job4j.hbm.lazy.Brand" />
-        <mapping class="ru.job4j.hbm.lazy.Auto" />
+<!--        <mapping class="ru.job4j.hbm.lazy.Brand" />-->
+<!--        <mapping class="ru.job4j.hbm.lazy.Auto" />-->
+        <mapping class="ru.job4j.hbm.cars.Engine" />
+        <mapping class="ru.job4j.hbm.cars.Car" />
+        <mapping class="ru.job4j.hbm.cars.Driver" />
+
     </session-factory>
 
 </hibernate-configuration>
