@@ -17,7 +17,6 @@ create table if not exists cars (
 );
 
 create table if not exists cars_drivers (
-                                            id serial primary key,
                                             driver_id int not null references drivers(id),
                                             car_id int not null references cars(id)
 )
