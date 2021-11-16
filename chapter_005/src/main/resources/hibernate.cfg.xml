@@ -5,7 +5,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://127.0.0.1:5432/lazy</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://127.0.0.1:5432/carsdrivers</property>
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">password</property>
         <property name="hibernate.connection.pool_size">1</property>
@@ -25,6 +25,7 @@
         <mapping class="ru.job4j.hbm.cars.Engine" />
         <mapping class="ru.job4j.hbm.cars.Car" />
         <mapping class="ru.job4j.hbm.cars.Driver" />
+        <mapping class="ru.job4j.hbm.hql.Candidate" />
 
     </session-factory>
 
