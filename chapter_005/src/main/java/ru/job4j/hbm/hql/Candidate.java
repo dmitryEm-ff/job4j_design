@@ -17,11 +17,15 @@ public class Candidate {
 
     private int salary;
 
-    public static Candidate of(String name, int exp, int salary) {
+    @OneToOne
+    private VacancyDB vacancyDB;
+
+    public static Candidate of(String name, int exp, int salary, VacancyDB vacancyDB) {
         Candidate candidate = new Candidate();
         candidate.name = name;
         candidate.exp = exp;
         candidate.salary = salary;
+        candidate.vacancyDB = vacancyDB;
         return candidate;
     }
 
