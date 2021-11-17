@@ -33,8 +33,8 @@ public class CandidateMain {
                     .setParameter("id", 2).uniqueResult();
 
             //Выбрать по имени
-            Candidate candidateTestTwo = (Candidate) session.createQuery("from Candidate c where c.name = 'three'")
-                    .uniqueResult();
+            List<Candidate> candidateTestTwo = session.createQuery("from Candidate c where c.name = :name")
+                    .setParameter("name", "name").list();
 
             //Обновить кандидата
             session.createQuery("update Candidate c set c.name = :name, c.exp = :exp, c.salary = :salary where c.id = :id")
@@ -51,8 +51,8 @@ public class CandidateMain {
 
             //Добавить новую запись через concat()
             session.createQuery("insert into Candidate (name, exp, salary) "
-            + "select concat(c.name, 'NEW'), c.exp + 5, c.salary + 1000000 "
-            + "from Candidate c where c.id = :id")
+                    + "select concat(c.name, 'NEW'), c.exp + 5, c.salary + 1000000 "
+                    + "from Candidate c where c.id = :id")
                     .setParameter("id", 1)
                     .executeUpdate();
 
