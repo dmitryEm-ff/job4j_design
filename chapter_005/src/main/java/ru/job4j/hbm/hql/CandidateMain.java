@@ -17,13 +17,12 @@ public class CandidateMain {
             Session session = sf.openSession();
             session.beginTransaction();
 
-            Candidate one = Candidate.of("one", 2, 10000);
-            Candidate two = Candidate.of("two", 10, 50000);
-            Candidate three = Candidate.of("three", 5, 30000);
-
-            session.save(one);
-            session.save(two);
-            session.save(three);
+//            Candidate one = Candidate.of("one", 2, 10000);
+//            Candidate two = Candidate.of("two", 10, 50000);
+//            Candidate three = Candidate.of("three", 5, 30000);
+//            session.save(one);
+//            session.save(two);
+//            session.save(three);
 
             //Выбрать всех Candidate
             List<Candidate> candidateList = session.createQuery("from Candidate").list();
