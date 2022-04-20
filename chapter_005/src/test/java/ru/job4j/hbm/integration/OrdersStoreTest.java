@@ -40,32 +40,23 @@ public class OrdersStoreTest {
 
     @After
     public void wipeTable() throws SQLException {
-        try (Connection con = pool.getConnection();
-             PreparedStatement ps = con.prepareStatement("truncate table orders")) {
-            ps.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        new OrdersStore(pool).clear();
     }
 
     @Test
     public void whenSaveOrderAndFindAllOneRowWithDescription() {
         OrdersStore store = new OrdersStore(pool);
-
         store.save(Order.of("name1", "description1"));
-
         List<Order> all = (List<Order>) store.findAll();
-
         assertThat(all.size(), is(1));
         assertThat(all.get(0).getDescription(), is("description1"));
-        assertThat(all.get(0).getId(), is(1));
     }
 
     @Test
     public void whenFindByIdThenSuccess() {
         OrdersStore store = new OrdersStore(pool);
         Order expected = store.save(Order.of("name1", "description1"));
-        Order rsl = store.findById(1);
+        Order rsl = store.findById(expected.getId());
 
         assertThat(expected, is(rsl));
     }

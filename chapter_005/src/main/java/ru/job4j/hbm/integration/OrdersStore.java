@@ -110,4 +110,13 @@ public class OrdersStore {
             e.printStackTrace();
         }
     }
+
+    public void clear() {
+        try (Connection con = pool.getConnection();
+             PreparedStatement pr = con.prepareStatement("truncate table orders")) {
+            pr.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
